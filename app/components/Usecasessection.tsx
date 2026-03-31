@@ -1,40 +1,143 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 const useCases = [
     {
         icon: "🛒",
         industry: "E-commerce Brands",
+        tag: "Direct-to-Consumer",
         help: "Drive traffic and sales with SEO, content marketing, email campaigns, and lead generation.",
+        detail: {
+            overview:
+                "E-commerce brands need consistent traffic, high-converting pages, and repeat buyers. We build full-funnel marketing systems that attract, convert, and retain customers at scale.",
+            services: [
+                "Search Engine Optimization (SEO)",
+                "Email & SMS Campaign Management",
+                "Performance Content Marketing",
+                "Lead Generation & Retargeting Ads",
+                "Product Launch Strategy",
+                "Conversion Rate Optimization",
+            ],
+            results: [
+                { metric: "3×", label: "Avg. organic traffic growth" },
+                { metric: "40%", label: "Increase in email revenue" },
+                { metric: "2.5×", label: "ROAS improvement" },
+            ],
+            ideal: "Best for: DTC brands, Shopify & WooCommerce stores, subscription products.",
+        },
     },
     {
         icon: "💼",
         industry: "B2B SaaS Companies",
+        tag: "Demand Generation",
         help: "Fill sales pipelines using demand generation, LinkedIn-focused digital marketing, and marketing strategy consulting.",
+        detail: {
+            overview:
+                "B2B SaaS growth depends on qualified pipeline. We build demand gen engines that attract decision-makers, nurture long sales cycles, and turn MQLs into closed deals.",
+            services: [
+                "LinkedIn Ads & Organic Strategy",
+                "Demand Generation Campaigns",
+                "Marketing Strategy Consulting",
+                "Account-Based Marketing (ABM)",
+                "Webinar & Event Marketing",
+                "Sales Enablement Content",
+            ],
+            results: [
+                { metric: "60%", label: "More qualified leads per quarter" },
+                { metric: "35%", label: "Shorter sales cycle" },
+                { metric: "4×", label: "Pipeline from LinkedIn" },
+            ],
+            ideal: "Best for: SaaS startups, PLG companies, enterprise software vendors.",
+        },
     },
     {
         icon: "🚀",
         industry: "Startups Scaling Fast",
+        tag: "Brand & Awareness",
         help: "Build brand awareness through PR, event marketing, and content that establishes thought leadership.",
+        detail: {
+            overview:
+                "Early-stage and growth-stage startups need brand presence fast. We create category-defining narratives, earn press coverage, and position founders as industry voices.",
+            services: [
+                "PR & Media Outreach",
+                "Thought Leadership Content",
+                "Event & Conference Marketing",
+                "Brand Identity & Messaging",
+                "Community Building Strategy",
+                "Investor-Ready Marketing Materials",
+            ],
+            results: [
+                { metric: "15+", label: "Media placements in 90 days" },
+                { metric: "5×", label: "Social following growth" },
+                { metric: "2×", label: "Inbound leads from content" },
+            ],
+            ideal: "Best for: Seed to Series B startups, founder-led brands, venture-backed companies.",
+        },
     },
     {
         icon: "🏢",
         industry: "Enterprise Refinement",
+        tag: "Strategy & Optimization",
         help: "Optimize existing efforts with marketing consulting, email nurturing, and data-driven strategy roadmaps.",
+        detail: {
+            overview:
+                "Enterprises have the resources but often lack alignment and efficiency. We audit your stack, identify revenue leaks, and build data-driven roadmaps that maximize ROI on existing spend.",
+            services: [
+                "Marketing Audit & Consulting",
+                "Email Nurture Sequence Design",
+                "Data-Driven Strategy Roadmaps",
+                "MarTech Stack Optimization",
+                "Cross-Channel Attribution",
+                "Team Training & Enablement",
+            ],
+            results: [
+                { metric: "28%", label: "Reduction in CAC" },
+                { metric: "50%", label: "Email open rate improvement" },
+                { metric: "3×", label: "ROI on existing ad spend" },
+            ],
+            ideal: "Best for: Mid-market & enterprise teams, companies with $1M+ marketing budgets.",
+        },
     },
     {
         icon: "🛍️",
         industry: "Retail & Consumer Goods",
+        tag: "Omnichannel Campaigns",
         help: "Launch campaigns combining brand marketing, social media ads, and event activations.",
+        detail: {
+            overview:
+                "Retail and CPG brands compete for attention both online and in-store. We craft omnichannel campaigns that build brand love, drive foot traffic, and convert shelf browsers into loyal customers.",
+            services: [
+                "Social Media Advertising (Meta, TikTok)",
+                "Brand Campaign Strategy",
+                "In-Store & Event Activations",
+                "Influencer & Creator Partnerships",
+                "Seasonal & Promotional Campaigns",
+                "Retail Media Networks",
+            ],
+            results: [
+                { metric: "45%", label: "Uplift in brand awareness" },
+                { metric: "30%", label: "Growth in repeat purchases" },
+                { metric: "10×", label: "Event-driven social reach" },
+            ],
+            ideal: "Best for: CPG brands, brick-and-mortar retailers, lifestyle & fashion companies.",
+        },
     },
 ];
 
 export default function UseCasesSection() {
+    const [active, setActive] = useState<number | null>(null);
+
+    const open = (i: number) => setActive(i);
+    const close = () => setActive(null);
+    const current = active !== null ? useCases[active] : null;
+
     return (
         <>
             <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap');
+
+        *, *::before, *::after { box-sizing: border-box; }
 
         .uc-root {
           position: relative;
@@ -42,6 +145,7 @@ export default function UseCasesSection() {
           background: #f7f6f2;
           padding: 100px 40px;
           font-family: 'DM Sans', sans-serif;
+          overflow: hidden;
         }
 
         .uc-inner {
@@ -81,27 +185,26 @@ export default function UseCasesSection() {
           font-style: italic;
         }
 
-        .uc-desc {
-          font-size: 15px;
-          line-height: 1.75;
-          color: #666;
-          margin: 0 0 40px;
-          max-width: 360px;
-        }
-
         .uc-divider {
           width: 40px;
           height: 2px;
           background: #6366F1;
           border-radius: 2px;
-          margin-bottom: 32px;
+          margin-bottom: 28px;
+        }
+
+        .uc-desc {
+          font-size: 15px;
+          line-height: 1.75;
+          color: #666;
+          margin: 0 0 40px;
         }
 
         .uc-proven {
           background: #fff;
           border: 1px solid #e8e8e8;
           border-radius: 18px;
-          padding: 28px 28px;
+          padding: 28px;
         }
 
         .uc-proven h4 {
@@ -139,34 +242,40 @@ export default function UseCasesSection() {
           transform: translateY(-1px);
         }
 
-        /* ── RIGHT ── */
+        /* ── RIGHT CARDS ── */
         .uc-right {
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 14px;
         }
 
         .uc-card {
           background: #fff;
           border: 1px solid #ebebeb;
           border-radius: 18px;
-          padding: 28px 28px;
+          padding: 24px 26px;
           display: flex;
           align-items: flex-start;
-          gap: 20px;
+          gap: 18px;
+          cursor: pointer;
           transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
         }
 
-        .uc-card:hover {
-          box-shadow: 0 12px 32px rgba(0,0,0,0.07);
-          transform: translateY(-3px);
-          border-color: #d8d8ff;
+        .uc-card:hover,
+        .uc-card.active {
+          box-shadow: 0 12px 32px rgba(99,102,241,0.1);
+          transform: translateY(-2px);
+          border-color: #c7c8fc;
+        }
+
+        .uc-card.active {
+          background: #fafaff;
         }
 
         .uc-icon {
-          font-size: 24px;
-          width: 48px;
-          height: 48px;
+          font-size: 22px;
+          width: 46px;
+          height: 46px;
           background: #f3f3fe;
           border-radius: 12px;
           display: flex;
@@ -175,21 +284,35 @@ export default function UseCasesSection() {
           flex-shrink: 0;
         }
 
-        .uc-card-body {
-          flex: 1;
+        .uc-card-body { flex: 1; }
+
+        .uc-card-top {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 6px;
         }
 
         .uc-card-title {
           font-size: 15px;
           font-weight: 600;
           color: #111;
-          margin-bottom: 6px;
+        }
+
+        .uc-tag {
+          font-size: 11px;
+          font-weight: 500;
+          color: #6366F1;
+          background: #ededfd;
+          padding: 3px 10px;
+          border-radius: 999px;
+          letter-spacing: 0.03em;
         }
 
         .uc-card-desc {
-          font-size: 14px;
-          line-height: 1.65;
-          color: #666;
+          font-size: 13.5px;
+          line-height: 1.6;
+          color: #777;
         }
 
         .uc-card-arrow {
@@ -200,9 +323,192 @@ export default function UseCasesSection() {
           transition: color 0.18s, transform 0.18s;
         }
 
-        .uc-card:hover .uc-card-arrow {
+        .uc-card:hover .uc-card-arrow,
+        .uc-card.active .uc-card-arrow {
           color: #6366F1;
           transform: translateX(3px);
+        }
+
+        /* ── OVERLAY ── */
+        .uc-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.35);
+          backdrop-filter: blur(3px);
+          z-index: 100;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s;
+        }
+
+        .uc-overlay.open {
+          opacity: 1;
+          pointer-events: all;
+        }
+
+        /* ── DRAWER ── */
+        .uc-drawer {
+          position: fixed;
+          top: 0;
+          right: 0;
+          height: 100vh;
+          width: 440px;
+          max-width: 92vw;
+          background: #fff;
+          z-index: 101;
+          transform: translateX(100%);
+          transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          box-shadow: -20px 0 60px rgba(0,0,0,0.12);
+        }
+
+        .uc-drawer.open {
+          transform: translateX(0);
+        }
+
+        .uc-drawer-header {
+          padding: 28px 28px 22px;
+          border-bottom: 1px solid #f0f0f0;
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 16px;
+        }
+
+        .uc-drawer-icon {
+          font-size: 28px;
+          width: 56px;
+          height: 56px;
+          background: #f3f3fe;
+          border-radius: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-bottom: 14px;
+        }
+
+        .uc-drawer-tag {
+          font-size: 11px;
+          font-weight: 500;
+          color: #6366F1;
+          background: #ededfd;
+          padding: 3px 10px;
+          border-radius: 999px;
+          display: inline-block;
+          margin-bottom: 8px;
+        }
+
+        .uc-drawer-title {
+          font-family: 'Instrument Serif', Georgia, serif;
+          font-size: 24px;
+          font-weight: 400;
+          color: #111;
+          margin: 0;
+        }
+
+        .uc-close {
+          background: #f5f5f5;
+          border: none;
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          font-size: 18px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #666;
+          flex-shrink: 0;
+          transition: background 0.15s;
+          line-height: 1;
+        }
+
+        .uc-close:hover { background: #ebebeb; }
+
+        .uc-drawer-body {
+          flex: 1;
+          overflow-y: auto;
+          padding: 28px 28px;
+          display: flex;
+          flex-direction: column;
+          gap: 28px;
+        }
+
+        .uc-drawer-overview {
+          font-size: 14.5px;
+          line-height: 1.75;
+          color: #555;
+        }
+
+        .uc-drawer-section h5 {
+          font-size: 11.5px;
+          font-weight: 600;
+          letter-spacing: 0.13em;
+          text-transform: uppercase;
+          color: #aaa;
+          margin: 0 0 14px;
+        }
+
+        .uc-services {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .uc-service-item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 14px;
+          color: #333;
+        }
+
+        .uc-service-item::before {
+          content: '';
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #6366F1;
+          flex-shrink: 0;
+        }
+
+        .uc-results {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 12px;
+        }
+
+        .uc-result-card {
+          background: #f7f7f5;
+          border-radius: 14px;
+          padding: 16px 12px;
+          text-align: center;
+        }
+
+        .uc-result-metric {
+          font-family: 'Instrument Serif', Georgia, serif;
+          font-size: 26px;
+          color: #6366F1;
+          line-height: 1;
+          margin-bottom: 6px;
+        }
+
+        .uc-result-label {
+          font-size: 11.5px;
+          color: #888;
+          line-height: 1.4;
+        }
+
+        .uc-ideal {
+          background: #f3f3fe;
+          border-radius: 12px;
+          padding: 16px 18px;
+          font-size: 13.5px;
+          color: #5557c4;
+          line-height: 1.6;
         }
 
         /* ── RESPONSIVE ── */
@@ -211,22 +517,68 @@ export default function UseCasesSection() {
             grid-template-columns: 1fr;
             gap: 48px;
           }
-          .uc-left {
-            position: static;
-          }
-          .uc-desc { max-width: 100%; }
+          .uc-left { position: static; }
         }
 
         @media (max-width: 480px) {
           .uc-root { padding: 72px 20px; }
-          .uc-card { padding: 22px 20px; gap: 14px; }
+          .uc-card { padding: 20px 18px; gap: 14px; }
+          .uc-drawer-body, .uc-drawer-header { padding: 22px 20px; }
+          .uc-results { grid-template-columns: repeat(3, 1fr); }
         }
       `}</style>
 
+            {/* ── OVERLAY ── */}
+            <div className={`uc-overlay${active !== null ? " open" : ""}`} onClick={close} />
+
+            {/* ── DRAWER ── */}
+            <div className={`uc-drawer${active !== null ? " open" : ""}`}>
+                {current && (
+                    <>
+                        <div className="uc-drawer-header">
+                            <div>
+                                <div className="uc-drawer-icon">{current.icon}</div>
+                                <div className="uc-drawer-tag">{current.tag}</div>
+                                <h3 className="uc-drawer-title">{current.industry}</h3>
+                            </div>
+                            <button className="uc-close" onClick={close}>✕</button>
+                        </div>
+
+                        <div className="uc-drawer-body">
+                            <p className="uc-drawer-overview">{current.detail.overview}</p>
+
+                            <div className="uc-drawer-section">
+                                <h5>What We Do</h5>
+                                <div className="uc-services">
+                                    {current.detail.services.map((s, i) => (
+                                        <div key={i} className="uc-service-item">{s}</div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="uc-drawer-section">
+                                <h5>Typical Results</h5>
+                                <div className="uc-results">
+                                    {current.detail.results.map((r, i) => (
+                                        <div key={i} className="uc-result-card">
+                                            <div className="uc-result-metric">{r.metric}</div>
+                                            <div className="uc-result-label">{r.label}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="uc-ideal">{current.detail.ideal}</div>
+                        </div>
+                    </>
+                )}
+            </div>
+
+            {/* ── SECTION ── */}
             <section className="uc-root">
                 <div className="uc-inner">
 
-                    {/* ── LEFT ── */}
+                    {/* LEFT */}
                     <div className="uc-left">
                         <p className="uc-label">Use Cases</p>
                         <h2 className="uc-title">
@@ -245,19 +597,24 @@ export default function UseCasesSection() {
                                 Our strategies adapt to your goals — whether launching new products,
                                 entering markets, or sustaining growth.
                             </p>
-                            <a href="#" className="uc-cta">
-                                See your use case in action →
-                            </a>
+                            <a href="#" className="uc-cta">See your use case in action →</a>
                         </div>
                     </div>
 
-                    {/* ── RIGHT ── */}
+                    {/* RIGHT */}
                     <div className="uc-right">
                         {useCases.map((item, i) => (
-                            <div key={i} className="uc-card">
+                            <div
+                                key={i}
+                                className={`uc-card${active === i ? " active" : ""}`}
+                                onClick={() => open(i)}
+                            >
                                 <div className="uc-icon">{item.icon}</div>
                                 <div className="uc-card-body">
-                                    <div className="uc-card-title">{item.industry}</div>
+                                    <div className="uc-card-top">
+                                        <div className="uc-card-title">{item.industry}</div>
+                                        <span className="uc-tag">{item.tag}</span>
+                                    </div>
                                     <div className="uc-card-desc">{item.help}</div>
                                 </div>
                                 <span className="uc-card-arrow">→</span>
