@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 
-const NAV_LINKS = ["Brands", "Creators", "Pricing", "Use Cases", "Contact"];
+const NAV_LINKS = ["Brands", "Pricing", "Use Cases", "Contact"];
 
 const GALLERY_IMAGES = [
     { src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80", alt: "Brand Marketing", height: "tall", service: "Brand Marketing" },
