@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Caveat, DM_Sans } from "next/font/google";
+import { Instrument_Serif, Caveat, DM_Sans, Playfair_Display, Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer";
 
@@ -20,6 +20,24 @@ const dmSans = DM_Sans({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-dm-sans",
+});
+
+const playfairDisplay = Playfair_Display({
+  weight: ["600", "700"],
+  subsets: ["latin"],
+  variable: "--font-playfair-display",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  axes: ["opsz"],
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-plus-jakarta-sans",
 });
 
 export const metadata: Metadata = {
@@ -92,7 +110,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${caveat.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${instrumentSerif.variable} ${caveat.variable} ${dmSans.variable} ${playfairDisplay.variable} ${fraunces.variable} ${plusJakartaSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}
         <Footer />

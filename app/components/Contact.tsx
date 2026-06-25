@@ -23,13 +23,11 @@ export default function ContactSection() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap');
-
         .contact-root {
           position: relative;
           z-index: 10;
           background-color: #f2e6d2;
-          font-family: 'DM Sans', sans-serif;
+          font-family: var(--font-dm-sans), sans-serif;
           color: #333333;
           width: 100%;
         }
@@ -51,7 +49,7 @@ export default function ContactSection() {
         }
 
         .left-heading {
-          font-family: 'Playfair Display', serif;
+          font-family: var(--font-playfair-display), serif;
           font-size: clamp(1.75rem, 3.5vw, 3rem);
           font-weight: 700;
           line-height: 1.2;

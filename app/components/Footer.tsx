@@ -1,5 +1,3 @@
-"use client";
-
 export default function Footer() {
   const columns = [
     {
@@ -41,8 +39,6 @@ export default function Footer() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
-
         .footer-root {
           font-family: 'DM Sans', sans-serif;
           background: #111111;

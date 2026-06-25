@@ -202,12 +202,10 @@ const AboutPage = () => {
     <main className="relative overflow-x-clip bg-[#F5F0E6] font-[var(--sm-body)] text-[#1A1A24]">
       {/* Fonts + design tokens + lightweight motion, scoped to this page */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap');
-
         :root {
-          --sm-display: 'Fraunces', 'Iowan Old Style', serif;
-          --sm-body: 'Plus Jakarta Sans', system-ui, sans-serif;
-          --sm-hand: 'Caveat', cursive;
+          --sm-display: var(--font-fraunces), 'Iowan Old Style', serif;
+          --sm-body: var(--font-plus-jakarta-sans), system-ui, sans-serif;
+          --sm-hand: var(--font-caveat), cursive;
         }
 
         .sm-display { font-family: var(--sm-display); }
