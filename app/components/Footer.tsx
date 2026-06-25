@@ -21,7 +21,7 @@ export default function Footer() {
 
   const socialLinks = [
     {
-      label: "LinkedIn", href: "#",
+      label: "LinkedIn", href: "https://www.linkedin.com/company/social-manch/",
       icon: (<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" /><circle cx="4" cy="4" r="2" /></svg>),
     },
     {
@@ -291,7 +291,7 @@ export default function Footer() {
                 <div>
                   <div className="footer-contact-label">Let's Chat</div>
                   <p className="footer-contact-sub">Have a question or want to work with us?</p>
-                  <a href="#contact" className="footer-cta-btn">Get in Touch</a>
+                  <a href="/contact" className="footer-cta-btn">Get in Touch</a>
                 </div>
                 <div>
                   <div className="footer-phone-label">Call Us</div>

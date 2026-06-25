@@ -193,8 +193,8 @@ export default function PricingSection() {
 
                                 <button
                                     type="button"
-                                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                                    className={`mt-4 w-full rounded-full py-3 text-xs font-semibold transition-colors ${tier.featured
+onClick={() => window.location.href = '/contact'}
+      className={`mt-4 w-full rounded-full py-3 text-xs font-semibold transition-colors ${tier.featured
                                         ? 'bg-[#5B5FEF] text-white hover:bg-[#4548D9]'
                                         : 'bg-[#ECEBFF] text-[#5B5FEF] hover:bg-[#DEDCFF]'
                                         }`}
@@ -227,8 +227,8 @@ export default function PricingSection() {
                     </p>
                     <button
                         type="button"
-                        onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                        className="whitespace-nowrap rounded-full bg-[#5B5FEF] px-6 py-3 text-xs font-semibold text-white transition-colors hover:bg-[#4548D9]"
+onClick={() => window.location.href = '/contact'}
+        className="whitespace-nowrap rounded-full bg-[#5B5FEF] px-6 py-3 text-xs font-semibold text-white transition-colors hover:bg-[#4548D9]"
                     >
                         Contact Us
                     </button>

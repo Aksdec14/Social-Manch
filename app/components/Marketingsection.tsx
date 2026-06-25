@@ -383,7 +383,7 @@ function ServiceModal({ service, onClose }: ServiceModalProps) {
                         e.currentTarget.style.background = "#1a1a1a";
                         e.currentTarget.style.transform = "none";
                     }}
-                    onClick={() => { onClose(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
+                    onClick={() => { onClose(); window.location.href = '/contact'; }}
                 >
                     Get Started with {service.title}
                 </button>
@@ -721,7 +721,7 @@ export default function MarketingSection() {
                             e.currentTarget.style.transform = "none";
                             e.currentTarget.style.boxShadow = "0 4px 24px rgba(232,160,32,0.3)";
                         }}
-                        onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                        onClick={() => window.location.href = '/contact'}
                     >
                         Contact Us
                     </button>

@@ -11,8 +11,8 @@ const TEAM_MEMBER = {
     ],
     image: "./rana.png",
     tags: ["Enterprise Strategy", "Operating Models", "Digital Transformation", "Governance", "CXO Advisory", "Growth Leadership"],
-    linkedin: "#",
-    twitter: "#",
+    linkedin: "https://www.linkedin.com/company/social-manch/",
+    twitter: "https://x.com/socialmanch",
     stats: [
         { val: "25+", label: "Years Experience" },
         { val: "CXO", label: "Level Advisory" },
@@ -387,7 +387,7 @@ export default function MeetTheTeam() {
                                     style={{ marginTop: 20, display: "flex", gap: 10, flexWrap: "wrap" }}
                                 >
                                     <button
-                                        onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                                        onClick={() => window.location.href = '/contact'}
                                         className="team-cta-btn"
                                         style={{
                                             fontFamily: "var(--font-dm-sans), sans-serif",
@@ -405,7 +405,7 @@ export default function MeetTheTeam() {
                                         Work With Us →
                                     </button>
                                     <a
-                                        href={TEAM_MEMBER.linkedin}
+                                        href="https://www.linkedin.com/company/social-manch/"
                                         className="team-social-btn team-view-profile-btn"
                                         style={{
                                             fontFamily: "var(--font-dm-sans), sans-serif",

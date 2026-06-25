@@ -1,4 +1,4 @@
-// components/Maintenance.tsx
+"use client";
 
 import React from "react";
 
@@ -83,9 +83,9 @@ const Maintenance = () => {
                 {/* CTA */}
                 <div className="mt-14 flex flex-col items-center gap-6">
 
-                    <a href="/" className="rounded-full bg-gradient-to-r from-[#5E7BFF] to-[#7C4DFF] px-10 py-4 text-lg font-semibold text-white shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                    <button onClick={() => window.location.href = '/'} className="rounded-full bg-gradient-to-r from-[#5E7BFF] to-[#7C4DFF] px-10 py-4 text-lg font-semibold text-white shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
                         Return Home
-                    </a>
+                    </button>
 
                     <p
                         className="text-xl text-orange-500"

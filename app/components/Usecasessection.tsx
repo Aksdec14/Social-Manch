@@ -661,7 +661,7 @@ export default function UseCasesSection() {
                 Our strategies adapt to your goals — whether launching new products,
                 entering markets, or sustaining growth.
               </p>
-              <a href="#contact" className="uc-cta">See your use case in action →</a>
+              <a href="/contact" className="uc-cta">See your use case in action →</a>
             </div>
           </div>
 

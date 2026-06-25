@@ -433,8 +433,8 @@ const AboutPage = () => {
               <h3 className="sm-display mt-2 text-xl text-[#15151F]">Rana Rajvinder Singh</h3>
               <p className="text-sm text-[#5B5B66]">Strategy, Transformation &amp; Execution Leader</p>
               <div className="mt-4 flex gap-4 text-sm font-semibold text-[#4F46E5]">
-                <a href="#" className="hover:text-[#4338CA]">LinkedIn</a>
-                <a href="#" className="hover:text-[#4338CA]">Twitter / X</a>
+                <a href="https://www.linkedin.com/company/social-manch/" className="hover:text-[#4338CA]">LinkedIn</a>
+                <a href="https://x.com/socialmanch" className="hover:text-[#4338CA]">Twitter / X</a>
               </div>
             </div>
 
@@ -469,7 +469,7 @@ const AboutPage = () => {
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
-                  href="#contact"
+                  href="/contact"
                   className="rounded-full bg-[#4F46E5] px-6 py-2.5 text-[15px] font-semibold text-white shadow-[0_8px_20px_-8px_rgba(79,70,229,0.6)] transition-colors hover:bg-[#4338CA]"
                 >
                   Work With Us →
