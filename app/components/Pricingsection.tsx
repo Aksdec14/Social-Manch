@@ -94,7 +94,7 @@ export default function PricingSection() {
     const [isYearly, setIsYearly] = useState(false);
 
     return (
-        <section className={`${inter.className} bg-[#F5F1E8] px-4 py-20 sm:px-6 lg:px-8`}>
+        <section id='pricing' className={`${inter.className} bg-[#F5F1E8] px-4 py-20 sm:px-6 lg:px-8`}>
             <div className="mx-auto max-w-6xl">
                 {/* Eyebrow badge — same gold pill + sparkle treatment as the hero */}
                 <div className="flex justify-center">
@@ -174,8 +174,8 @@ export default function PricingSection() {
                             <div
                                 key={tier.name}
                                 className={`flex flex-col rounded-3xl bg-white p-8 ${tier.featured
-                                        ? 'shadow-xl ring-2 ring-[#5B5FEF]'
-                                        : 'border border-neutral-200'
+                                    ? 'shadow-xl ring-2 ring-[#5B5FEF]'
+                                    : 'border border-neutral-200'
                                     }`}
                             >
                                 <h3 className="text-base font-semibold text-[#15182B]">{tier.name}</h3>
@@ -193,9 +193,10 @@ export default function PricingSection() {
 
                                 <button
                                     type="button"
+                                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                                     className={`mt-4 w-full rounded-full py-3 text-xs font-semibold transition-colors ${tier.featured
-                                            ? 'bg-[#5B5FEF] text-white hover:bg-[#4548D9]'
-                                            : 'bg-[#ECEBFF] text-[#5B5FEF] hover:bg-[#DEDCFF]'
+                                        ? 'bg-[#5B5FEF] text-white hover:bg-[#4548D9]'
+                                        : 'bg-[#ECEBFF] text-[#5B5FEF] hover:bg-[#DEDCFF]'
                                         }`}
                                 >
                                     Get Started
@@ -226,6 +227,7 @@ export default function PricingSection() {
                     </p>
                     <button
                         type="button"
+                        onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                         className="whitespace-nowrap rounded-full bg-[#5B5FEF] px-6 py-3 text-xs font-semibold text-white transition-colors hover:bg-[#4548D9]"
                     >
                         Contact Us

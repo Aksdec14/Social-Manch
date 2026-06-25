@@ -1,6 +1,5 @@
 "use client";
 
-import PricingSection from "./Pricingsection";
 
 const TEAM_MEMBER = {
     name: "Rana Rajvinder Singh",
@@ -388,6 +387,7 @@ export default function MeetTheTeam() {
                                     style={{ marginTop: 20, display: "flex", gap: 10, flexWrap: "wrap" }}
                                 >
                                     <button
+                                        onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                                         className="team-cta-btn"
                                         style={{
                                             fontFamily: "var(--font-dm-sans), sans-serif",
@@ -430,7 +430,7 @@ export default function MeetTheTeam() {
                         </div>
                     </div>
                 </div>
-                <PricingSection />
+
             </section>
 
 

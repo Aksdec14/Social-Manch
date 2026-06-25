@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Caveat, DM_Sans } from "next/font/google";
 import "./globals.css";
+import Footer from "./components/Footer";
 
 const instrumentSerif = Instrument_Serif({
   weight: ["400"],
@@ -93,7 +94,9 @@ export default function RootLayout({
       lang="en"
       className={`${instrumentSerif.variable} ${caveat.variable} ${dmSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">{children}
+        <Footer />
+      </body>
     </html>
   );
 }

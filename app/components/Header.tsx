@@ -20,6 +20,11 @@ const GALLERY_IMAGES = [
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const scrollToContact = () => {
+        const el = document.getElementById('contact');
+        if (el) { el.scrollIntoView({ behavior: 'smooth' }); }
+        else { window.location.href = '/contact'; }
+    };
 
     return (
         <>
@@ -133,7 +138,7 @@ export default function Header() {
                         {NAV_LINKS.map((link) => (
                             <li key={link}>
                                 <a
-                                    href="#"
+                                    href={link === "Brands" ? "/brands" : link === "Pricing" ? "/pricing" : link === "Use Cases" ? "/usecases" : link === "Contact" ? "/contact" : "#"}
                                     className="text-[15px] font-medium text-[#3a3a3a] no-underline hover:text-[#5776FB] transition-colors whitespace-nowrap"
                                     style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
                                 >
@@ -147,10 +152,11 @@ export default function Header() {
                     <div className="nav-right">
                         {/* Contact button — sm and above */}
                         <button
+                            onClick={scrollToContact}
                             className="contact-btn hidden sm:flex items-center text-sm md:text-[15px] font-semibold text-white bg-[#5776FB] border-none cursor-pointer px-4 md:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 whitespace-nowrap"
                             style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
                         >
-                            Contact
+                            Get Started
                         </button>
 
                         {/* Hamburger — below lg */}
@@ -185,7 +191,7 @@ export default function Header() {
                         {NAV_LINKS.map((link) => (
                             <a
                                 key={link}
-                                href="#"
+                                href={link === "Brands" ? "/brands" : link === "Pricing" ? "/pricing" : link === "Use Cases" ? "/usecases" : link === "Contact" ? "/contact" : "#"}
                                 onClick={() => setMenuOpen(false)}
                                 className="mobile-link text-sm sm:text-base font-medium text-[#1a1a1a] no-underline px-4 py-2.5 rounded-xl transition-colors"
                             >
@@ -196,7 +202,7 @@ export default function Header() {
                         <div className="mt-3 px-2 sm:hidden">
                             <button
                                 className="w-full text-[15px] font-semibold text-white bg-[#5776FB] border-none cursor-pointer py-2.5 rounded-xl hover:bg-[#4361e3] transition-colors"
-                                onClick={() => setMenuOpen(false)}
+                                onClick={() => { setMenuOpen(false); scrollToContact(); }}
                             >
                                 Contact
                             </button>
@@ -332,6 +338,7 @@ export default function Header() {
 
                     {/* CTA Button */}
                     <button
+                        onClick={scrollToContact}
                         className="font-semibold text-white bg-[#8651F9] border-none cursor-pointer rounded-full
                                    shadow-[0_4px_20px_rgba(134,81,249,0.35)]
                                    hover:bg-[#723bed] hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(134,81,249,0.45)]

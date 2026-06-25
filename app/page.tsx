@@ -5,7 +5,7 @@ import Marketingsection from './components/Marketingsection'
 import Usecasessection from './components/Usecasessection'
 import Meettheteam from './components/Meettheteam'
 import ContactSection from './components/Contact'
-import Footer from './components/Footer'
+
 
 
 const page = () => {
@@ -17,7 +17,7 @@ const page = () => {
       <Usecasessection />
       <Meettheteam />
       <ContactSection />
-      <Footer />
+
     </main>
   )
 }

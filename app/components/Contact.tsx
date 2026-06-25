@@ -290,7 +290,7 @@ export default function ContactSection() {
         }
       `}</style>
 
-      <div className="contact-root">
+      <div id="contact" className="contact-root">
         <div className="contact-container">
           <div className="contact-left">
             <h1 className="left-heading">

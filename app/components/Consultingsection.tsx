@@ -234,7 +234,7 @@ export default function ConsultingSection() {
                             we work alongside your leadership to create structured, scalable
                             growth engines.
                         </p>
-                        <a href="#" className="cs-cta">
+                        <a href="#contact" className="cs-cta">
                             Get Started
                             <span className="cs-cta-arrow">→</span>
                         </a>

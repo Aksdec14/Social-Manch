@@ -5,14 +5,17 @@ export default function Footer() {
     {
       heading: "Services",
       links: ["Brand Strategy", "Content Marketing", "Demand Generation", "Digital Marketing", "Email Marketing", "Lead Generation"],
+      hrefs: ["/services/brand-strategy", "/services/content-marketing", "/services/demand-generation", "/services/digital-marketing", "/services/email-marketing", "/services/lead-generation"],
     },
     {
       heading: "Company",
       links: ["About Us", "Careers", "News & Blog", "Case Studies", "Partners"],
+      hrefs: ["/about-us", "/careers", "/news", "/case-studies", "/partners"],
     },
     {
       heading: "Legal",
       links: ["Privacy Policy", "Terms of Use", "Cookie Policy", "Disclaimer"],
+      hrefs: ["/privacy-policy", "/terms-of-use", "/cookie-policy", "/disclaimer"],
     },
   ];
 
@@ -276,9 +279,9 @@ export default function Footer() {
               {columns.map((col) => (
                 <div key={col.heading}>
                   <div className="footer-col-heading">{col.heading}</div>
-                  <ul className="footer-col-links">
-                    {col.links.map((link) => (
-                      <li key={link}><a href="#">{link}</a></li>
+                    <ul className="footer-col-links">
+                    {(col.hrefs || col.links.map(() => "#")).map((href, i) => (
+                      <li key={col.links[i]}><a href={href}>{col.links[i]}</a></li>
                     ))}
                   </ul>
                 </div>
@@ -288,7 +291,7 @@ export default function Footer() {
                 <div>
                   <div className="footer-contact-label">Let's Chat</div>
                   <p className="footer-contact-sub">Have a question or want to work with us?</p>
-                  <a href="#" className="footer-cta-btn">Get in Touch</a>
+                  <a href="#contact" className="footer-cta-btn">Get in Touch</a>
                 </div>
                 <div>
                   <div className="footer-phone-label">Call Us</div>
