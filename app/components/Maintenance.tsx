@@ -1,21 +1,25 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const Maintenance = () => {
+    const router = useRouter();
+
     return (
-        <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#F8F5F0] px-6">
+        <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#F8F5F0] px-5 sm:px-6 lg:px-8">
 
-            {/* Decorative Blur */}
-            <div className="absolute left-0 top-20 h-72 w-72 rounded-full bg-[#5E7BFF]/10 blur-3xl" />
-            <div className="absolute right-0 bottom-0 h-96 w-96 rounded-full bg-[#FFCC66]/10 blur-3xl" />
+            {/* Background Blur */}
+            <div className="absolute left-[-80px] top-10 h-56 w-56 rounded-full bg-[#5E7BFF]/10 blur-3xl sm:h-72 sm:w-72 lg:h-96 lg:w-96" />
+            <div className="absolute right-[-80px] bottom-0 h-56 w-56 rounded-full bg-[#FFCC66]/10 blur-3xl sm:h-72 sm:w-72 lg:h-96 lg:w-96" />
 
-            {/* Small Scribbles */}
-            <span className="absolute left-20 top-40 rotate-12 text-5xl text-[#7ED957]">
+            {/* Left Scribble */}
+            <span className="absolute left-6 top-24 hidden rotate-12 text-5xl text-[#7ED957] lg:block">
                 /
             </span>
 
-            <div className="absolute right-24 top-44 text-center">
+            {/* Right Scribble */}
+            <div className="absolute right-10 top-32 hidden text-center lg:block">
                 <p
                     className="rotate-[-5deg] text-xl text-sky-500"
                     style={{ fontFamily: "cursive" }}
@@ -51,20 +55,20 @@ const Maintenance = () => {
                 </svg>
             </div>
 
-            <div className="mx-auto max-w-3xl text-center">
+            {/* Content */}
+            <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center text-center">
 
                 {/* Badge */}
-                <div className="mb-10 inline-flex items-center rounded-full border border-yellow-400 bg-white/60 px-6 py-2 text-sm font-medium text-yellow-700 backdrop-blur">
+                <div className="mb-8 inline-flex items-center rounded-full border border-yellow-400 bg-white/70 px-5 py-2 text-xs font-medium text-yellow-700 backdrop-blur sm:text-sm">
                     ✦ We're making something better for you
                 </div>
 
                 {/* Heading */}
                 <h1
-                    className="leading-none tracking-tight text-[#171717]"
+                    className="font-serif font-medium leading-none tracking-tight text-[#171717]"
                     style={{
                         fontFamily: "Cormorant Garamond, serif",
-                        fontSize: "clamp(3.5rem,8vw,7rem)",
-                        fontWeight: 500,
+                        fontSize: "clamp(3rem,9vw,7rem)",
                     }}
                 >
                     Under
@@ -73,27 +77,34 @@ const Maintenance = () => {
                 </h1>
 
                 {/* Description */}
-                <p className="mx-auto mt-8 max-w-2xl text-lg leading-9 text-neutral-600">
+                <p className="mt-6 max-w-2xl px-2 text-base leading-7 text-neutral-600 sm:mt-8 sm:px-0 sm:text-lg sm:leading-8">
                     We're refining this experience with the same attention to detail that
                     goes into every project we build.
-                    <br />
+                    <br className="hidden sm:block" />
                     This page will be available very soon.
                 </p>
 
                 {/* CTA */}
-                <div className="mt-14 flex flex-col items-center gap-6">
+                <div className="mt-10 flex w-full max-w-xs flex-col items-center gap-5 sm:mt-14">
 
-                    <button onClick={() => window.location.href = '/'} className="rounded-full bg-gradient-to-r from-[#5E7BFF] to-[#7C4DFF] px-10 py-4 text-lg font-semibold text-white shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
+                    <button
+                        onClick={() => router.push("/")}
+                        className="w-full rounded-full bg-gradient-to-r from-[#5E7BFF] to-[#7C4DFF] px-8 py-4 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                    >
                         Return Home
                     </button>
 
                     <p
-                        className="text-xl text-orange-500"
+                        className="text-lg text-orange-500 sm:text-xl"
                         style={{ fontFamily: "cursive" }}
                     >
                         Thanks for your patience ✨
                     </p>
+                </div>
 
+                {/* Bottom Note */}
+                <div className="mt-12 text-sm text-neutral-400 sm:mt-16">
+                    © {new Date().getFullYear()} Social Manch
                 </div>
             </div>
         </section>
