@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { ComponentType, SVGProps } from 'react';
 import { Inter, Playfair_Display } from 'next/font/google';
 
@@ -628,9 +628,13 @@ export default function ServicesSection() {
 
     const totalPages = Math.ceil(SERVICES.length / perPage);
 
+    const prevPerPage = useRef(perPage);
     // Reset to first page when perPage changes to avoid out-of-range index
     useEffect(() => {
-        setCurrentPage(0);
+        if (prevPerPage.current !== perPage) {
+            prevPerPage.current = perPage;
+            setCurrentPage(0);
+        }
     }, [perPage]);
 
     const visibleServices = SERVICES.slice(

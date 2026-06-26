@@ -1,6 +1,8 @@
 
 
 
+import Link from "next/link";
+
 const CareersPage = () => {
   return (
     <main>
@@ -18,14 +20,14 @@ const CareersPage = () => {
 
         {/* Heading */}
         <h1 className="font-serif text-4xl md:text-5xl italic text-[#1A1A1A] leading-tight mb-5">
-          <span className="not-italic">We're not</span> hiring
+          <span className="not-italic">We&apos;re not</span> hiring
           <br />
           <span className="not-italic">just yet.</span>
         </h1>
 
         {/* Subtext */}
         <p className="text-[#6B6B6B] text-base max-w-md mx-auto leading-relaxed mb-9">
-          Big things are coming. We'll be opening roles soon — stay tuned for
+          Big things are coming. We&apos;ll be opening roles soon — stay tuned for
           updates on opportunities to join the Social Manch team.
         </p>
 
@@ -35,15 +37,15 @@ const CareersPage = () => {
             href="mailto:hello@socialmanch.com"
             className="bg-[#7B5EA7] text-white rounded-full px-7 py-3 text-sm font-medium hover:bg-[#6a4d94] transition-colors"
           >
-            Notify me when we're hiring
+            Notify me when we&apos;re hiring
           </a>
 
-          <a
+          <Link
             href="/"
             className="border border-[#C5BFB0] text-[#1A1A1A] rounded-full px-7 py-3 text-sm font-medium hover:border-[#999] transition-colors"
           >
             Back to home
-          </a>
+          </Link>
         </div>
 
         <hr className="w-10 border-t-2 border-[#C5BFB0] my-10" />

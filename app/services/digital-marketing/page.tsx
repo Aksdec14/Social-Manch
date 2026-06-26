@@ -241,19 +241,19 @@ const SectionLabel = ({
 // ─── Section-specific components ───────────────────────────────────────────────
 
 const ChannelCard = ({ channel, index }: { channel: Channel; index: number }) => {
-  const reveal = useReveal(index * 100);
+  const { ref, style } = useReveal(index * 100);
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      ref={reveal.ref}
+      ref={ref}
       style={
         hovered
           ? {
-            ...reveal.style,
+            ...style,
             transform: "translateY(-4px)",
             boxShadow: `0 16px 40px ${channel.color}20`,
           }
-          : reveal.style
+          : style
       }
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -284,19 +284,19 @@ const DeliverableCard = ({
   item: Deliverable;
   index: number;
 }) => {
-  const reveal = useReveal(index * 80);
+  const { ref, style } = useReveal(index * 80);
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      ref={reveal.ref}
+      ref={ref}
       style={
         hovered
           ? {
-            ...reveal.style,
+            ...style,
             backgroundColor: "rgba(255,255,255,0.15)",
             transform: "translateY(-3px)",
           }
-          : reveal.style
+          : style
       }
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -315,11 +315,11 @@ const DeliverableCard = ({
 
 const FAQItem = ({ faq, index }: { faq: FAQ; index: number }) => {
   const [open, setOpen] = useState(false);
-  const reveal = useReveal(index * 80);
+  const { ref, style } = useReveal(index * 80);
   return (
     <div
-      ref={reveal.ref}
-      style={reveal.style}
+      ref={ref}
+      style={style}
       className="border-b border-black/10 last:border-b-0"
     >
       <button
@@ -355,6 +355,46 @@ const FAQItem = ({ faq, index }: { faq: FAQ; index: number }) => {
   );
 };
 
+const CaseResultCard = ({ result }: { result: CaseResult }) => {
+  return (
+    <div
+      className="bg-white rounded-2xl p-7 border border-black/[0.06] flex items-center gap-6"
+    >
+      <span
+        className="font-serif text-4xl sm:text-5xl font-normal flex-shrink-0"
+        style={{ color: result.color }}
+      >
+        {result.value}
+      </span>
+      <p className="text-gray-500 text-sm leading-relaxed">{result.label}</p>
+    </div>
+  );
+};
+
+const WhoWeServeItem = ({ item, index }: { item: { label: string; color: string; description: string }; index: number }) => {
+  const { ref, style } = useReveal(index * 100);
+  return (
+    <div
+      ref={ref}
+      style={style}
+      className="bg-white rounded-2xl p-6 border border-black/[0.06] flex gap-5 items-start"
+    >
+      <span
+        className="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mt-0.5 flex-shrink-0"
+        style={{
+          backgroundColor: item.color + "18",
+          color: item.color,
+        }}
+      >
+        {item.label}
+      </span>
+      <p className="text-gray-500 text-sm leading-relaxed">
+        {item.description}
+      </p>
+    </div>
+  );
+};
+
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
 const DigitalMarketingPage = () => {
@@ -371,15 +411,15 @@ const DigitalMarketingPage = () => {
   });
 
   // Standalone reveal hooks for sections that previously used IIFEs
-  const whatWeDoLeft = useReveal(0);
-  const whatWeDoRight = useReveal(120);
-  const channelsLeft = useReveal(0);
-  const deliverablesLeft = useReveal(0);
-  const proofLeft = useReveal(0);
-  const whoLeft = useReveal(0);
-  const faqLeft = useReveal(0);
-  const ctaLeft = useReveal(0);
-  const ctaRight = useReveal(150);
+  const { ref: whatWeDoLeft, style: whatWeDoLeftStyle } = useReveal(0);
+  const { ref: whatWeDoRight, style: whatWeDoRightStyle } = useReveal(120);
+  const { ref: channelsLeft, style: channelsLeftStyle } = useReveal(0);
+  const { ref: deliverablesLeft, style: deliverablesLeftStyle } = useReveal(0);
+  const { ref: proofLeft, style: proofLeftStyle } = useReveal(0);
+  const { ref: whoLeft, style: whoLeftStyle } = useReveal(0);
+  const { ref: faqLeft, style: faqLeftStyle } = useReveal(0);
+  const { ref: ctaLeft, style: ctaLeftStyle } = useReveal(0);
+  const { ref: ctaRight, style: ctaRightStyle } = useReveal(150);
 
   const whoItems = [
     {
@@ -401,11 +441,6 @@ const DigitalMarketingPage = () => {
         "You know your market well. We help you dominate it digitally — with local SEO, hyper-targeted paid campaigns, and social content that actually reflects how your customers talk about you.",
     },
   ];
-
-  const whoReveal0 = useReveal(0);
-  const whoReveal1 = useReveal(100);
-  const whoReveal2 = useReveal(200);
-  const whoReveals = [whoReveal0, whoReveal1, whoReveal2];
 
   return (
     <main className="bg-[#F5F0E8] min-h-screen pt-[72px] overflow-x-hidden">
@@ -449,7 +484,7 @@ const DigitalMarketingPage = () => {
               >
                 Most digital marketing looks busy and proves very little. We build
                 channel strategies that are tied to revenue outcomes from day one —
-                whether that's paid search, SEO, social, or email. No vanity metrics.
+                whether that&apos;s paid search, SEO, social, or email. No vanity metrics.
                 No bloated retainers. Just clear-eyed work that earns its place in
                 your budget every month.
               </p>
@@ -495,9 +530,9 @@ const DigitalMarketingPage = () => {
                   ))}
                 </div>
                 <p className="font-serif text-sm text-black leading-relaxed mb-4">
-                  "Social Manch took our Google Ads account from a money pit to our
+                  &quot;Social Manch took our Google Ads account from a money pit to our
                   highest-performing acquisition channel in four months. The
-                  transparency alone was worth it."
+                  transparency alone was worth it.&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-[#2BB5A0]/20 flex items-center justify-center text-[#2BB5A0] font-semibold text-xs">
@@ -520,32 +555,32 @@ const DigitalMarketingPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
-            <div ref={whatWeDoLeft.ref} style={whatWeDoLeft.style}>
+            <div ref={whatWeDoLeft} style={whatWeDoLeftStyle}>
               <SectionLabel color="#E8456A">✦ What We Do</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-normal text-black leading-snug">
                 Digital channels are a tool. We treat them like one.
               </h2>
             </div>
             <div
-              ref={whatWeDoRight.ref}
-              style={whatWeDoRight.style}
+              ref={whatWeDoRight}
+              style={whatWeDoRightStyle}
               className="space-y-5 pt-1"
             >
               <p className="text-gray-500 text-sm leading-relaxed">
-                The problem with most digital marketing agencies isn't the tactics —
-                it's that the tactics are decoupled from your actual business goals.
+                The problem with most digital marketing agencies isn&apos;t the tactics &mdash;
+                it&apos;s that the tactics are decoupled from your actual business goals.
                 You get a report full of impressions and engagement rates, and a
-                revenue number that hasn't moved.
+                revenue number that hasn&apos;t moved.
               </p>
               <p className="text-gray-500 text-sm leading-relaxed">
-                We start with what you're trying to achieve — more leads, lower
-                acquisition cost, higher repeat purchase rate — and build backwards
+                We start with what you&apos;re trying to achieve &mdash; more leads, lower
+                acquisition cost, higher repeat purchase rate &mdash; and build backwards
                 from there. Every channel we recommend, every campaign we run, every
                 piece of content we produce has a clear line to a business metric
                 you care about.
               </p>
               <p className="text-gray-500 text-sm leading-relaxed">
-                And when something isn't working, we tell you before the invoice
+                And when something isn&apos;t working, we tell you before the invoice
                 arrives.
               </p>
             </div>
@@ -558,8 +593,8 @@ const DigitalMarketingPage = () => {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
             <div
-              ref={channelsLeft.ref}
-              style={channelsLeft.style}
+              ref={channelsLeft}
+              style={channelsLeftStyle}
               className="lg:sticky lg:top-28"
             >
               <SectionLabel color="#7B5EA7">✦ Our Channels</SectionLabel>
@@ -569,7 +604,7 @@ const DigitalMarketingPage = () => {
                 <em>strategy.</em>
               </h2>
               <p className="text-gray-500 text-sm leading-relaxed mt-4">
-                We don't recommend channels because we're comfortable running them.
+                We don&apos;t recommend channels because we&apos;re comfortable running them.
                 We recommend the mix that fits your audience, budget, and timeline.
               </p>
             </div>
@@ -596,8 +631,8 @@ const DigitalMarketingPage = () => {
         <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
             <div
-              ref={deliverablesLeft.ref}
-              style={deliverablesLeft.style}
+              ref={deliverablesLeft}
+              style={deliverablesLeftStyle}
               className="lg:sticky lg:top-28"
             >
               <SectionLabel color="#2BB5A0">✦ What You Get</SectionLabel>
@@ -624,8 +659,8 @@ const DigitalMarketingPage = () => {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
             <div
-              ref={proofLeft.ref}
-              style={proofLeft.style}
+              ref={proofLeft}
+              style={proofLeftStyle}
               className="lg:sticky lg:top-28"
             >
               <SectionLabel color="#F4A432">✦ Proof</SectionLabel>
@@ -634,27 +669,14 @@ const DigitalMarketingPage = () => {
                 <em>not case studies.</em>
               </h2>
               <p className="text-gray-500 text-sm leading-relaxed mt-4">
-                Real results from a D2C brand we've worked with for 14 months. Available to discuss on a call.
+                Real results from a D2C brand we&apos;ve worked with for 14 months. Available to discuss on a call.
               </p>
             </div>
 
             <div className="space-y-4">
-              {caseResults.map((r, i) => {
-                return (
-                  <div
-                    key={r.label}
-                    className="bg-white rounded-2xl p-7 border border-black/[0.06] flex items-center gap-6"
-                  >
-                    <span
-                      className="font-serif text-4xl sm:text-5xl font-normal flex-shrink-0"
-                      style={{ color: r.color }}
-                    >
-                      {r.value}
-                    </span>
-                    <p className="text-gray-500 text-sm leading-relaxed">{r.label}</p>
-                  </div>
-                );
-              })}
+              {caseResults.map((r) => (
+                <CaseResultCard key={r.label} result={r} />
+              ))}
 
               <div className="bg-white rounded-2xl p-7 border border-black/[0.06]">
                 <div className="flex gap-1 mb-4">
@@ -663,9 +685,9 @@ const DigitalMarketingPage = () => {
                   ))}
                 </div>
                 <p className="font-serif text-base text-black leading-relaxed mb-5">
-                  "Every other agency sent us a monthly report and asked us to trust
-                  the process. Social Manch told us what was working, what wasn't,
-                  and what they were doing about it — every single week."
+                  &quot;Every other agency sent us a monthly report and asked us to trust
+                  the process. Social Manch told us what was working, what wasn&apos;t,
+                  and what they were doing about it &mdash; every single week.&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div
@@ -691,8 +713,8 @@ const DigitalMarketingPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            <div ref={whoLeft.ref} style={whoLeft.style} className="lg:sticky lg:top-28">
-              <SectionLabel color="#E8456A">✦ Who It's For</SectionLabel>
+            <div ref={whoLeft} style={whoLeftStyle} className="lg:sticky lg:top-28">
+              <SectionLabel color="#E8456A">✦ Who It&apos;s For</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
                 For businesses that are done settling for inconclusive results.
               </h2>
@@ -700,25 +722,7 @@ const DigitalMarketingPage = () => {
 
             <div className="space-y-4">
               {whoItems.map((item, i) => (
-                <div
-                  key={item.label}
-                  ref={whoReveals[i].ref}
-                  style={whoReveals[i].style}
-                  className="bg-white rounded-2xl p-6 border border-black/[0.06] flex gap-5 items-start"
-                >
-                  <span
-                    className="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mt-0.5 flex-shrink-0"
-                    style={{
-                      backgroundColor: item.color + "18",
-                      color: item.color,
-                    }}
-                  >
-                    {item.label}
-                  </span>
-                  <p className="text-gray-500 text-sm leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
+                <WhoWeServeItem key={item.label} item={item} index={i} />
               ))}
             </div>
           </div>
@@ -729,7 +733,7 @@ const DigitalMarketingPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            <div ref={faqLeft.ref} style={faqLeft.style} className="lg:sticky lg:top-28">
+            <div ref={faqLeft} style={faqLeftStyle} className="lg:sticky lg:top-28">
               <SectionLabel color="#E8456A">✦ FAQ</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
                 Questions<br />we always<br />get asked.
@@ -761,7 +765,7 @@ const DigitalMarketingPage = () => {
 
         <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
-            <div ref={ctaLeft.ref} style={ctaLeft.style}>
+            <div ref={ctaLeft} style={ctaLeftStyle}>
               <p className="text-[#2BB5A0] text-[11px] font-semibold tracking-widest uppercase mb-5">
                 ✦ Ready to Grow
               </p>
@@ -773,7 +777,7 @@ const DigitalMarketingPage = () => {
               <p className="text-white/50 text-sm leading-relaxed mb-10">
                 Our digital marketing retainers are built around accountability.
                 We&apos;ll tell you in the first call whether we think you&apos;ll see a
-                return — and if we don&apos;t think you will, we won&apos;t take the project.
+                return &mdash; and if we don&apos;t think you will, we won&apos;t take the project.
               </p>
               <div className="flex flex-wrap gap-4 items-center">
                 <MagneticCTA href="/contact" dark>
@@ -790,8 +794,8 @@ const DigitalMarketingPage = () => {
 
             {/* Right — included card */}
             <div
-              ref={ctaRight.ref}
-              style={ctaRight.style}
+              ref={ctaRight}
+              style={ctaRightStyle}
               className="bg-white/8 border border-white/10 rounded-3xl p-8"
             >
               <p className="text-[10px] font-semibold tracking-widest uppercase text-white/40 mb-6">

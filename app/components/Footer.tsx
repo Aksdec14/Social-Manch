@@ -285,7 +285,7 @@ export default function Footer() {
 
               <div className="footer-contact-col">
                 <div>
-                  <div className="footer-contact-label">Let's Chat</div>
+                  <div className="footer-contact-label">Let&apos;s Chat</div>
                   <p className="footer-contact-sub">Have a question or want to work with us?</p>
                   <a href="/contact" className="footer-cta-btn">Get in Touch</a>
                 </div>

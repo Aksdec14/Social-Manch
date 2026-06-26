@@ -68,9 +68,9 @@ const useReveal = (delay = 0) => {
 
 const FAQItem = ({ faq, index }: { faq: FAQ; index: number }) => {
   const [open, setOpen] = useState(false);
-  const reveal = useReveal(index * 80);
+  const { ref, style } = useReveal(index * 80);
   return (
-    <div ref={reveal.ref} style={reveal.style} className="border-b border-black/10 last:border-b-0">
+    <div ref={ref} style={style} className="border-b border-black/10 last:border-b-0">
       <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between py-5 text-left gap-4 group">
         <span className="font-serif text-base sm:text-lg font-normal text-black leading-snug group-hover:text-gray-600 transition-colors duration-200">{faq.question}</span>
         <span className="flex-shrink-0 w-7 h-7 rounded-full border border-black/15 flex items-center justify-center text-sm transition-all duration-300" style={{ transform: open ? "rotate(45deg)" : "rotate(0deg)", backgroundColor: open ? "#1a1a1a" : "transparent", color: open ? "white" : "#1a1a1a" }}>+</span>
@@ -83,16 +83,16 @@ const FAQItem = ({ faq, index }: { faq: FAQ; index: number }) => {
 };
 
 const StepCard = ({ step, index }: { step: Step; index: number }) => {
-  const reveal = useReveal(index * 100);
+  const { ref, style } = useReveal(index * 100);
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      ref={reveal.ref}
+      ref={ref}
 
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="relative bg-white rounded-2xl p-6 border border-black/[0.06] transition-all duration-300 cursor-default overflow-hidden"
-      {...(hovered ? { style: { ...reveal.style, transform: "translateY(-4px)", boxShadow: `0 16px 40px ${step.color}20` } } : {})}
+      {...(hovered ? { style: { ...style, transform: "translateY(-4px)", boxShadow: `0 16px 40px ${step.color}20` } } : {})}
     >
       <div className="absolute top-0 left-0 w-1 h-full rounded-l-2xl transition-all duration-300" style={{ backgroundColor: step.color, opacity: hovered ? 1 : 0.4 }} />
       <span className="text-[11px] font-bold tracking-widest mb-3 block" style={{ color: step.color }}>{step.number}</span>
@@ -103,16 +103,16 @@ const StepCard = ({ step, index }: { step: Step; index: number }) => {
 };
 
 const DeliverableCard = ({ item, index }: { item: Deliverable; index: number }) => {
-  const reveal = useReveal(index * 80);
+  const { ref, style } = useReveal(index * 80);
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      ref={reveal.ref}
+      ref={ref}
 
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="bg-white/10 rounded-2xl p-5 border border-white/10 transition-all duration-300"
-      {...(hovered ? { style: { ...reveal.style, backgroundColor: "rgba(255,255,255,0.15)", transform: "translateY(-3px)" } } : {})}
+      {...(hovered ? { style: { ...style, backgroundColor: "rgba(255,255,255,0.15)", transform: "translateY(-3px)" } } : {})}
     >
       <span className="text-2xl mb-3 block">{item.icon}</span>
       <h4 className="font-serif text-base font-normal text-white mb-2">{item.title}</h4>
@@ -142,6 +142,18 @@ const SectionLabel = ({ color, children }: { color: string; children: React.Reac
   <span className="text-[11px] font-semibold tracking-widest uppercase mb-4 block" style={{ color }}>{children}</span>
 );
 
+interface WhoItemData { label: string; color: string; description: string; }
+
+const WhoItem = ({ item, index }: { item: WhoItemData; index: number }) => {
+  const { ref, style } = useReveal(index * 100);
+  return (
+    <div ref={ref} style={style} className="bg-white rounded-2xl p-6 border border-black/[0.06] flex gap-5 items-start">
+      <span className="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mt-0.5 flex-shrink-0" style={{ backgroundColor: item.color + "18", color: item.color }}>{item.label}</span>
+      <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
+    </div>
+  );
+};
+
 const DemandGenerationPage = () => {
   const [titleVisible, setTitleVisible] = useState(false);
   useEffect(() => { const t = setTimeout(() => setTitleVisible(true), 100); return () => clearTimeout(t); }, []);
@@ -151,6 +163,15 @@ const DemandGenerationPage = () => {
     transform: titleVisible ? "translateY(0)" : "translateY(20px)",
     transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`,
   });
+
+  const { ref: whatWeDoLeftRef, style: whatWeDoLeftStyle } = useReveal(0);
+  const { ref: whatWeDoRightRef, style: whatWeDoRightStyle } = useReveal(120);
+  const { ref: processLeftRef, style: processLeftStyle } = useReveal(0);
+  const { ref: deliverablesLeftRef, style: deliverablesLeftStyle } = useReveal(0);
+  const { ref: whoItsForLeftRef, style: whoItsForLeftStyle } = useReveal(0);
+  const { ref: faqLeftRef, style: faqLeftStyle } = useReveal(0);
+  const { ref: ctaLeftRef, style: ctaLeftStyle } = useReveal(0);
+  const { ref: ctaRightRef, style: ctaRightStyle } = useReveal(150);
 
   return (
     <main className="bg-[#F5F0E8] min-h-screen pt-[72px] overflow-x-hidden">
@@ -191,7 +212,7 @@ const DemandGenerationPage = () => {
               <div className="border-t border-black/8 pt-6">
                 <div className="flex gap-1 mb-3">{[...Array(5)].map((_, i) => <span key={i} style={{ color: "#F4A432", fontSize: "14px" }}>★</span>)}</div>
                 <p className="font-serif text-sm text-black leading-relaxed mb-4">
-                  "Within 90 days, Social Manch had filled our pipeline with more qualified leads than our entire previous year of outbound. The quality was night and day."
+                  &quot;Within 90 days, Social Manch had filled our pipeline with more qualified leads than our entire previous year of outbound. The quality was night and day.&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-[#E8456A]/20 flex items-center justify-center text-[#E8456A] font-semibold text-xs">RV</div>
@@ -210,25 +231,17 @@ const DemandGenerationPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
-            {(() => {
-              const r = useReveal(0); return (
-                <div ref={r.ref} style={r.style}>
-                  <SectionLabel color="#E8456A">✦ What We Do</SectionLabel>
-                  <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-normal text-black leading-snug">
-                    Predictable pipeline is an engineering problem, not a luck problem.
-                  </h2>
-                </div>
-              );
-            })()}
-            {(() => {
-              const r = useReveal(120); return (
-                <div ref={r.ref} style={r.style} className="space-y-5 pt-1">
-                  <p className="text-gray-500 text-sm leading-relaxed">Most companies treat demand generation like a tap you turn on when pipeline runs dry. That's the wrong model. By the time you notice the dryness, you're already three months behind. The companies that win consistently treat pipeline as infrastructure — something you build, optimise, and maintain, not something you improvise.</p>
-                  <p className="text-gray-500 text-sm leading-relaxed">We design and run full-funnel demand generation programmes that create systematic awareness among your ideal buyers, nurture that awareness into intent, and hand your sales team a steady flow of genuinely qualified opportunities.</p>
-                  <p className="text-gray-500 text-sm leading-relaxed">The result is a marketing function that sales actually trusts — because the leads are real, the data is clean, and the system gets better every month.</p>
-                </div>
-              );
-            })()}
+            <div ref={whatWeDoLeftRef} style={whatWeDoLeftStyle}>
+              <SectionLabel color="#E8456A">✦ What We Do</SectionLabel>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-normal text-black leading-snug">
+                Predictable pipeline is an engineering problem, not a luck problem.
+              </h2>
+            </div>
+            <div ref={whatWeDoRightRef} style={whatWeDoRightStyle} className="space-y-5 pt-1">
+              <p className="text-gray-500 text-sm leading-relaxed">Most companies treat demand generation like a tap you turn on when pipeline runs dry. That&apos;s the wrong model. By the time you notice the dryness, you&apos;re already three months behind. The companies that win consistently treat pipeline as infrastructure — something you build, optimise, and maintain, not something you improvise.</p>
+              <p className="text-gray-500 text-sm leading-relaxed">We design and run full-funnel demand generation programmes that create systematic awareness among your ideal buyers, nurture that awareness into intent, and hand your sales team a steady flow of genuinely qualified opportunities.</p>
+              <p className="text-gray-500 text-sm leading-relaxed">The result is a marketing function that sales actually trusts — because the leads are real, the data is clean, and the system gets better every month.</p>
+            </div>
           </div>
         </Container>
       </section>
@@ -237,17 +250,13 @@ const DemandGenerationPage = () => {
       <section id="process" className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            {(() => {
-              const r = useReveal(0); return (
-                <div ref={r.ref} style={r.style} className="lg:sticky lg:top-28">
-                  <SectionLabel color="#7B5EA7">✦ Our Process</SectionLabel>
-                  <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
-                    Four steps from<br />invisible to<br /><em>in-demand</em>.
-                  </h2>
-                  <p className="text-gray-500 text-sm leading-relaxed mt-4">A proven system that turns cold audiences into warm pipeline — and warm pipeline into closed revenue.</p>
-                </div>
-              );
-            })()}
+            <div ref={processLeftRef} style={processLeftStyle} className="lg:sticky lg:top-28">
+              <SectionLabel color="#7B5EA7">✦ Our Process</SectionLabel>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
+                Four steps from<br />invisible to<br /><em>in-demand</em>.
+              </h2>
+              <p className="text-gray-500 text-sm leading-relaxed mt-4">A proven system that turns cold audiences into warm pipeline — and warm pipeline into closed revenue.</p>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {steps.map((step, i) => <StepCard key={step.number} step={step} index={i} />)}
             </div>
@@ -261,17 +270,13 @@ const DemandGenerationPage = () => {
         <div className="absolute w-40 h-40 rounded-full bg-[#7B5EA7] opacity-10 bottom-0 left-10 pointer-events-none" style={{ animation: "floatB 11s ease-in-out infinite" }} />
         <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            {(() => {
-              const r = useReveal(0); return (
-                <div ref={r.ref} style={r.style} className="lg:sticky lg:top-28">
-                  <SectionLabel color="#E8456A">✦ What You Get</SectionLabel>
-                  <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white leading-snug">
-                    Everything your pipeline needs to flow.
-                  </h2>
-                  <p className="text-white/40 text-sm leading-relaxed mt-4">Six integrated deliverables built to work as a single revenue system.</p>
-                </div>
-              );
-            })()}
+            <div ref={deliverablesLeftRef} style={deliverablesLeftStyle} className="lg:sticky lg:top-28">
+              <SectionLabel color="#E8456A">✦ What You Get</SectionLabel>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white leading-snug">
+                Everything your pipeline needs to flow.
+              </h2>
+              <p className="text-white/40 text-sm leading-relaxed mt-4">Six integrated deliverables built to work as a single revenue system.</p>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {deliverables.map((item, i) => <DeliverableCard key={item.title} item={item} index={i} />)}
             </div>
@@ -283,30 +288,20 @@ const DemandGenerationPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            {(() => {
-              const r = useReveal(0); return (
-                <div ref={r.ref} style={r.style} className="lg:sticky lg:top-28">
-                  <SectionLabel color="#F4A432">✦ Who It's For</SectionLabel>
-                  <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
-                    For teams tired of crossing their fingers at end of quarter.
-                  </h2>
-                </div>
-              );
-            })()}
+            <div ref={whoItsForLeftRef} style={whoItsForLeftStyle} className="lg:sticky lg:top-28">
+              <SectionLabel color="#F4A432">✦ Who It&apos;s For</SectionLabel>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
+                For teams tired of crossing their fingers at end of quarter.
+              </h2>
+            </div>
             <div className="space-y-4">
               {[
-                { label: "Series A–B SaaS", color: "#E8456A", description: "You've found product-market fit and now need to scale acquisition without burning through your runway on ads that don't convert. We build efficient demand engines that grow with your ARR targets." },
-                { label: "B2B Services", color: "#7B5EA7", description: "You're tired of depending entirely on referrals and want a repeatable inbound motion. We create the campaigns and content that put you in front of decision-makers before they're talking to your competitors." },
-                { label: "Sales-Led Companies", color: "#2BB5A0", description: "Your sales team is excellent but they're spending too much time hunting cold. We warm up the market so your reps spend their time closing, not prospecting." },
-              ].map((item, i) => {
-                const reveal = useReveal(i * 100);
-                return (
-                  <div key={item.label} ref={reveal.ref} style={reveal.style} className="bg-white rounded-2xl p-6 border border-black/[0.06] flex gap-5 items-start">
-                    <span className="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mt-0.5 flex-shrink-0" style={{ backgroundColor: item.color + "18", color: item.color }}>{item.label}</span>
-                    <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
-                  </div>
-                );
-              })}
+                { label: "Series A–B SaaS", color: "#E8456A", description: "You've found product-market fit and now need to scale acquisition without burning through your runway on ads that don&apos;t convert. We build efficient demand engines that grow with your ARR targets." },
+                { label: "B2B Services", color: "#7B5EA7", description: "You&apos;re tired of depending entirely on referrals and want a repeatable inbound motion. We create the campaigns and content that put you in front of decision-makers before they&apos;re talking to your competitors." },
+                { label: "Sales-Led Companies", color: "#2BB5A0", description: "Your sales team is excellent but they&apos;re spending too much time hunting cold. We warm up the market so your reps spend their time closing, not prospecting." },
+              ].map((item, i) => (
+                <WhoItem key={item.label} item={item} index={i} />
+              ))}
             </div>
           </div>
         </Container>
@@ -316,16 +311,12 @@ const DemandGenerationPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            {(() => {
-              const r = useReveal(0); return (
-                <div ref={r.ref} style={r.style} className="lg:sticky lg:top-28">
-                  <SectionLabel color="#E8456A">✦ FAQ</SectionLabel>
-                  <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
-                    Questions<br />we always<br />get asked.
-                  </h2>
-                </div>
-              );
-            })()}
+            <div ref={faqLeftRef} style={faqLeftStyle} className="lg:sticky lg:top-28">
+              <SectionLabel color="#E8456A">✦ FAQ</SectionLabel>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
+                Questions<br />we always<br />get asked.
+              </h2>
+            </div>
             <div>
               {faqs.map((faq, i) => <FAQItem key={i} faq={faq} index={i} />)}
             </div>
@@ -341,28 +332,22 @@ const DemandGenerationPage = () => {
         <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             {/* Left */}
-            {(() => {
-              const r = useReveal(0); return (
-                <div ref={r.ref} style={r.style}>
-                  <p className="text-[#E8456A] text-[11px] font-semibold tracking-widest uppercase mb-5">✦ Ready to Fill Your Pipeline</p>
-                  <h2 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-normal italic text-white mb-6 leading-tight">
-                    Let's build a pipeline<br />your sales team<br />will actually love.
-                  </h2>
-                  <p className="text-white/50 text-sm leading-relaxed mb-10">
-                    Our demand generation retainers are built to fill your pipeline with qualified leads and turn that flow into a system your sales team can count on.
-                  </p>
-                  <div className="flex flex-wrap gap-4 items-center">
-                    <MagneticCTA href="/contact" dark>Start the Conversation →</MagneticCTA>
-                    <a href="/pricing" className="text-[11px] font-semibold tracking-widest uppercase text-white/50 hover:text-white transition-colors duration-200 border-b border-white/20 pb-0.5">Get a Quote</a>
-                  </div>
-                </div>
-              );
-            })()}
+            <div ref={ctaLeftRef} style={ctaLeftStyle}>
+              <p className="text-[#E8456A] text-[11px] font-semibold tracking-widest uppercase mb-5">✦ Ready to Fill Your Pipeline</p>
+              <h2 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-normal italic text-white mb-6 leading-tight">
+                Let&apos;s build a pipeline<br />your sales team<br />will actually love.
+              </h2>
+              <p className="text-white/50 text-sm leading-relaxed mb-10">
+                Our demand generation retainers are built to fill your pipeline with qualified leads and turn that flow into a system your sales team can count on.
+              </p>
+              <div className="flex flex-wrap gap-4 items-center">
+                <MagneticCTA href="/contact" dark>Start the Conversation →</MagneticCTA>
+                <a href="/pricing" className="text-[11px] font-semibold tracking-widest uppercase text-white/50 hover:text-white transition-colors duration-200 border-b border-white/20 pb-0.5">Get a Quote</a>
+              </div>
+            </div>
             {/* Right — pricing card */}
-            {(() => {
-              const r = useReveal(150); return (
-                <div ref={r.ref} style={r.style} className="bg-white/8 border border-white/10 rounded-3xl p-8">
-                  <p className="text-[10px] font-semibold tracking-widest uppercase text-white/40 mb-6">What's included</p>
+            <div ref={ctaRightRef} style={ctaRightStyle} className="bg-white/8 border border-white/10 rounded-3xl p-8">
+              <p className="text-[10px] font-semibold tracking-widest uppercase text-white/40 mb-6">What&apos;s included</p>
                   <ul className="space-y-4 mb-8">
                     {[
                       "ICP & Buyer Journey Map",
@@ -386,8 +371,6 @@ const DemandGenerationPage = () => {
                     <p className="text-white/30 text-xs">Excl. ad spend</p>
                   </div>
                 </div>
-              );
-            })()}
           </div>
         </Container>
       </section>

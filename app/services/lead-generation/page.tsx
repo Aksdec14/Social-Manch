@@ -270,19 +270,19 @@ const ServiceCard = ({
   service: Service;
   index: number;
 }) => {
-  const reveal = useReveal(index * 100);
+  const { ref, style } = useReveal(index * 100);
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      ref={reveal.ref}
+      ref={ref}
       style={
         hovered
           ? {
-            ...reveal.style,
+            ...style,
             transform: "translateY(-4px)",
             boxShadow: `0 16px 40px ${service.color}20`,
           }
-          : reveal.style
+          : style
       }
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -313,19 +313,19 @@ const DeliverableCard = ({
   item: Deliverable;
   index: number;
 }) => {
-  const reveal = useReveal(index * 80);
+  const { ref, style } = useReveal(index * 80);
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      ref={reveal.ref}
+      ref={ref}
       style={
         hovered
           ? {
-            ...reveal.style,
+            ...style,
             backgroundColor: "rgba(255,255,255,0.15)",
             transform: "translateY(-3px)",
           }
-          : reveal.style
+          : style
       }
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -344,11 +344,11 @@ const DeliverableCard = ({
 
 const FAQItem = ({ faq, index }: { faq: FAQ; index: number }) => {
   const [open, setOpen] = useState(false);
-  const reveal = useReveal(index * 80);
+  const { ref, style } = useReveal(index * 80);
   return (
     <div
-      ref={reveal.ref}
-      style={reveal.style}
+      ref={ref}
+      style={style}
       className="border-b border-black/10 last:border-b-0"
     >
       <button
@@ -400,21 +400,22 @@ const LeadGenerationPage = () => {
   });
 
   // Section reveal hooks — all at top level, no IIFEs
-  const whatWeDoLeft = useReveal(0);
-  const whatWeDoRight = useReveal(120);
-  const servicesLeft = useReveal(0);
-  const deliverablesLeft = useReveal(0);
-  const proofLeft = useReveal(0);
-  const whoLeft = useReveal(0);
-  const faqLeft = useReveal(0);
-  const ctaLeft = useReveal(0);
-  const ctaRight = useReveal(150);
+  const { ref: whatWeDoLeftRef, style: whatWeDoLeftStyle } = useReveal(0);
+  const { ref: whatWeDoRightRef, style: whatWeDoRightStyle } = useReveal(120);
+  const { ref: servicesLeftRef, style: servicesLeftStyle } = useReveal(0);
+  const { ref: deliverablesLeftRef, style: deliverablesLeftStyle } = useReveal(0);
+  const { ref: proofLeftRef, style: proofLeftStyle } = useReveal(0);
+  const { ref: whoLeftRef, style: whoLeftStyle } = useReveal(0);
+  const { ref: faqLeftRef, style: faqLeftStyle } = useReveal(0);
+  const { ref: ctaLeftRef, style: ctaLeftStyle } = useReveal(0);
+  const { ref: ctaRightRef, style: ctaRightStyle } = useReveal(150);
 
   // "Who it's for" rows
-  const whoReveal0 = useReveal(0);
-  const whoReveal1 = useReveal(100);
-  const whoReveal2 = useReveal(200);
-  const whoReveals = [whoReveal0, whoReveal1, whoReveal2];
+  const { ref: whoReveal0Ref, style: whoReveal0Style } = useReveal(0);
+  const { ref: whoReveal1Ref, style: whoReveal1Style } = useReveal(100);
+  const { ref: whoReveal2Ref, style: whoReveal2Style } = useReveal(200);
+  const whoRevealRefs = [whoReveal0Ref, whoReveal1Ref, whoReveal2Ref];
+  const whoRevealStyles = [whoReveal0Style, whoReveal1Style, whoReveal2Style];
 
   const whoItems = [
     {
@@ -527,10 +528,10 @@ const LeadGenerationPage = () => {
                   ))}
                 </div>
                 <p className="font-serif text-sm text-black leading-relaxed mb-4">
-                  "We'd been burning budget on ads that produced clicks but no
+                  &quot;We&apos;d been burning budget on ads that produced clicks but no
                   pipeline. Social Manch rebuilt our lead gen from the ground up —
                   60 days later our sales team had more qualified conversations than
-                  the entire previous quarter."
+                  the entire previous quarter.&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div
@@ -556,25 +557,25 @@ const LeadGenerationPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
-            <div ref={whatWeDoLeft.ref} style={whatWeDoLeft.style}>
+            <div ref={whatWeDoLeftRef} style={whatWeDoLeftStyle}>
               <SectionLabel color="#E8456A">✦ What We Do</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-normal text-black leading-snug">
-                The problem isn't lead volume. It's lead quality.
+                The problem isn&apos;t lead volume. It&apos;s lead quality.
               </h2>
             </div>
             <div
-              ref={whatWeDoRight.ref}
-              style={whatWeDoRight.style}
+              ref={whatWeDoRightRef}
+              style={whatWeDoRightStyle}
               className="space-y-5 pt-1"
             >
               <p className="text-gray-500 text-sm leading-relaxed">
-                Sales teams that don't trust marketing leads go back to doing their
-                own prospecting. That's expensive, inconsistent, and it means your
+                Sales teams that don&apos;t trust marketing leads go back to doing their
+                own prospecting. That&apos;s expensive, inconsistent, and it means your
                 marketing budget is producing nothing except friction between two
                 teams that should be working together.
               </p>
               <p className="text-gray-500 text-sm leading-relaxed">
-                The fix isn't more leads — it's better ones. We start every
+                The fix isn&apos;t more leads — it&apos;s better ones. We start every
                 engagement by defining what a qualified lead actually looks like for
                 your business, building the scoring model that identifies them
                 reliably, and then designing the outbound and inbound systems that
@@ -595,8 +596,8 @@ const LeadGenerationPage = () => {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
             <div
-              ref={servicesLeft.ref}
-              style={servicesLeft.style}
+              ref={servicesLeftRef}
+              style={servicesLeftStyle}
               className="lg:sticky lg:top-28"
             >
               <SectionLabel color="#7B5EA7">✦ How We Do It</SectionLabel>
@@ -606,9 +607,9 @@ const LeadGenerationPage = () => {
                 <em>machine.</em>
               </h2>
               <p className="text-gray-500 text-sm leading-relaxed mt-4">
-                Outbound finds buyers who don't know you yet. Inbound captures the
+                Outbound finds buyers who don&apos;t know you yet. Inbound captures the
                 ones already looking. Qualification filters both. CRM makes sure
-                nothing gets lost. Together, they're a system.
+                nothing gets lost. Together, they&apos;re a system.
               </p>
             </div>
 
@@ -634,8 +635,8 @@ const LeadGenerationPage = () => {
         <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
             <div
-              ref={deliverablesLeft.ref}
-              style={deliverablesLeft.style}
+              ref={deliverablesLeftRef}
+              style={deliverablesLeftStyle}
               className="lg:sticky lg:top-28"
             >
               <SectionLabel color="#7B5EA7">✦ What You Get</SectionLabel>
@@ -661,14 +662,14 @@ const LeadGenerationPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            <div ref={proofLeft.ref} style={proofLeft.style} className="lg:sticky lg:top-28">
+            <div ref={proofLeftRef} style={proofLeftStyle} className="lg:sticky lg:top-28">
               <SectionLabel color="#F4A432">✦ Proof</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
                 Pipeline numbers,<br />not<br />
                 <em>activity metrics.</em>
               </h2>
               <p className="text-gray-500 text-sm leading-relaxed mt-4">
-                Results from clients we've worked with for 6+ months. We'll walk
+                Results from clients we&apos;ve worked with for 6+ months. We&apos;ll walk
                 you through the specifics on a call — no aggregated averages, no
                 cherry-picked outliers.
               </p>
@@ -700,10 +701,10 @@ const LeadGenerationPage = () => {
                   ))}
                 </div>
                 <p className="font-serif text-base text-black leading-relaxed mb-5">
-                  "Every agency we'd used before measured success in leads. Social
+                  &quot;Every agency we&apos;d used before measured success in leads. Social
                   Manch measured it in pipeline. That single shift in how they
                   defined success changed everything about the quality of what they
-                  delivered."
+                  delivered.&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div
@@ -729,8 +730,8 @@ const LeadGenerationPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            <div ref={whoLeft.ref} style={whoLeft.style} className="lg:sticky lg:top-28">
-              <SectionLabel color="#E8456A">✦ Who It's For</SectionLabel>
+            <div ref={whoLeftRef} style={whoLeftStyle} className="lg:sticky lg:top-28">
+              <SectionLabel color="#E8456A">✦ Who It&apos;s For</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
                 For teams where pipeline is too important to leave to chance.
               </h2>
@@ -740,8 +741,8 @@ const LeadGenerationPage = () => {
               {whoItems.map((item, i) => (
                 <div
                   key={item.label}
-                  ref={whoReveals[i].ref}
-                  style={whoReveals[i].style}
+                  ref={whoRevealRefs[i]}
+                  style={whoRevealStyles[i]}
                   className="bg-white rounded-2xl p-6 border border-black/[0.06] flex gap-5 items-start"
                 >
                   <span
@@ -767,7 +768,7 @@ const LeadGenerationPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            <div ref={faqLeft.ref} style={faqLeft.style} className="lg:sticky lg:top-28">
+            <div ref={faqLeftRef} style={faqLeftStyle} className="lg:sticky lg:top-28">
               <SectionLabel color="#E8456A">✦ FAQ</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
                 Questions<br />we always<br />get asked.
@@ -799,7 +800,7 @@ const LeadGenerationPage = () => {
 
         <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
-            <div ref={ctaLeft.ref} style={ctaLeft.style}>
+            <div ref={ctaLeftRef} style={ctaLeftStyle}>
               <p
                 className="text-[11px] font-semibold tracking-widest uppercase mb-5"
                 style={{ color: "#7B5EA7" }}
@@ -807,7 +808,7 @@ const LeadGenerationPage = () => {
                 ✦ Ready to Fill Your Pipeline
               </p>
               <h2 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-normal italic text-white mb-6 leading-tight">
-                Let's build a lead<br />
+                Let&apos;s build a lead<br />
                 engine your sales<br />
                 team trusts.
               </h2>
@@ -832,8 +833,8 @@ const LeadGenerationPage = () => {
 
             {/* Tier cards */}
             <div
-              ref={ctaRight.ref}
-              style={ctaRight.style}
+              ref={ctaRightRef}
+              style={ctaRightStyle}
               className="bg-white/8 border border-white/10 rounded-3xl p-8 space-y-4"
             >
               <p className="text-[10px] font-semibold tracking-widest uppercase text-white/40 mb-6">

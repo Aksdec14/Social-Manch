@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const NAV_LINKS = ["Brands", "Services", "Pricing", "Use Cases", "Contact"];
 
@@ -82,7 +83,7 @@ export default function Navbar() {
                 style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
             >
                 <nav className="nav-inner px-4 sm:px-6 lg:px-10 py-4 sm:py-4.5 lg:py-4.5">
-                    <a href="/" className="nav-logo-link">
+                    <Link href="/" className="nav-logo-link">
                         <Image
                             src="/logo.png"
                             alt="Social Manch"
@@ -91,7 +92,7 @@ export default function Navbar() {
                             className="w-auto h-[32px] sm:h-[36px] lg:h-[40px] object-contain block"
                             priority
                         />
-                    </a>
+                    </Link>
                     <div className="nav-logo-spacer pointer-events-none select-none" aria-hidden="true">
                         <span className="block w-[100px] sm:w-[130px] lg:w-[160px] h-px" aria-hidden="true" />
                     </div>

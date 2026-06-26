@@ -60,7 +60,7 @@ const Maintenance = () => {
 
                 {/* Badge */}
                 <div className="mb-8 inline-flex items-center rounded-full border border-yellow-400 bg-white/70 px-5 py-2 text-xs font-medium text-yellow-700 backdrop-blur sm:text-sm">
-                    ✦ We're making something better for you
+                    ✦ We&apos;re making something better for you
                 </div>
 
                 {/* Heading */}
@@ -78,7 +78,7 @@ const Maintenance = () => {
 
                 {/* Description */}
                 <p className="mt-6 max-w-2xl px-2 text-base leading-7 text-neutral-600 sm:mt-8 sm:px-0 sm:text-lg sm:leading-8">
-                    We're refining this experience with the same attention to detail that
+                    We&apos;re refining this experience with the same attention to detail that
                     goes into every project we build.
                     <br className="hidden sm:block" />
                     This page will be available very soon.

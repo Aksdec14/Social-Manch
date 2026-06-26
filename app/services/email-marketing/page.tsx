@@ -241,19 +241,19 @@ const SectionLabel = ({
 // ─── Section-specific components ───────────────────────────────────────────────
 
 const ServiceCard = ({ service, index }: { service: Service; index: number }) => {
-  const reveal = useReveal(index * 100);
+  const { ref, style } = useReveal(index * 100);
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      ref={reveal.ref}
+      ref={ref}
       style={
         hovered
           ? {
-            ...reveal.style,
+            ...style,
             transform: "translateY(-4px)",
             boxShadow: `0 16px 40px ${service.color}20`,
           }
-          : reveal.style
+          : style
       }
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -284,19 +284,19 @@ const DeliverableCard = ({
   item: Deliverable;
   index: number;
 }) => {
-  const reveal = useReveal(index * 80);
+  const { ref, style } = useReveal(index * 80);
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      ref={reveal.ref}
+      ref={ref}
       style={
         hovered
           ? {
-            ...reveal.style,
+            ...style,
             backgroundColor: "rgba(255,255,255,0.15)",
             transform: "translateY(-3px)",
           }
-          : reveal.style
+          : style
       }
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -315,11 +315,11 @@ const DeliverableCard = ({
 
 const FAQItem = ({ faq, index }: { faq: FAQ; index: number }) => {
   const [open, setOpen] = useState(false);
-  const reveal = useReveal(index * 80);
+  const { ref, style } = useReveal(index * 80);
   return (
     <div
-      ref={reveal.ref}
-      style={reveal.style}
+      ref={ref}
+      style={style}
       className="border-b border-black/10 last:border-b-0"
     >
       <button
@@ -371,21 +371,22 @@ const EmailMarketingPage = () => {
   });
 
   // Section reveal hooks — all at top level, no IIFEs
-  const whatWeDoLeft = useReveal(0);
-  const whatWeDoRight = useReveal(120);
-  const servicesLeft = useReveal(0);
-  const deliverablesLeft = useReveal(0);
-  const proofLeft = useReveal(0);
-  const whoLeft = useReveal(0);
-  const faqLeft = useReveal(0);
-  const ctaLeft = useReveal(0);
-  const ctaRight = useReveal(150);
+  const { ref: whatWeDoLeftRef, style: whatWeDoLeftStyle } = useReveal(0);
+  const { ref: whatWeDoRightRef, style: whatWeDoRightStyle } = useReveal(120);
+  const { ref: servicesLeftRef, style: servicesLeftStyle } = useReveal(0);
+  const { ref: deliverablesLeftRef, style: deliverablesLeftStyle } = useReveal(0);
+  const { ref: proofLeftRef, style: proofLeftStyle } = useReveal(0);
+  const { ref: whoLeftRef, style: whoLeftStyle } = useReveal(0);
+  const { ref: faqLeftRef, style: faqLeftStyle } = useReveal(0);
+  const { ref: ctaLeftRef, style: ctaLeftStyle } = useReveal(0);
+  const { ref: ctaRightRef, style: ctaRightStyle } = useReveal(150);
 
   // "Who it's for" rows
-  const whoReveal0 = useReveal(0);
-  const whoReveal1 = useReveal(100);
-  const whoReveal2 = useReveal(200);
-  const whoReveals = [whoReveal0, whoReveal1, whoReveal2];
+  const { ref: whoReveal0Ref, style: whoReveal0Style } = useReveal(0);
+  const { ref: whoReveal1Ref, style: whoReveal1Style } = useReveal(100);
+  const { ref: whoReveal2Ref, style: whoReveal2Style } = useReveal(200);
+  const whoRevealRefs = [whoReveal0Ref, whoReveal1Ref, whoReveal2Ref];
+  const whoRevealStyles = [whoReveal0Style, whoReveal1Style, whoReveal2Style];
 
   const whoItems = [
     {
@@ -446,7 +447,7 @@ const EmailMarketingPage = () => {
                 style={fadeIn(350)}
               >
                 Email is still the highest-ROI channel in digital marketing. The
-                problem isn't the channel — it's how most businesses use it. Batch-and-blast
+                problem isn&apos;t the channel — it&apos;s how most businesses use it. Batch-and-blast
                 campaigns, generic copy, and zero segmentation turn a 38× ROI tool
                 into a cost centre. We build email programmes that your subscribers
                 look forward to, that your ESP loves to deliver, and that your finance
@@ -489,9 +490,9 @@ const EmailMarketingPage = () => {
                   ))}
                 </div>
                 <p className="font-serif text-sm text-black leading-relaxed mb-4">
-                  "Our welcome sequence was three generic emails that went nowhere.
+                  &quot;Our welcome sequence was three generic emails that went nowhere.
                   Social Manch rebuilt it from scratch — our trial-to-paid conversion
-                  went up 28% in the first month."
+                  went up 28% in the first month.&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div
@@ -515,28 +516,28 @@ const EmailMarketingPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
-            <div ref={whatWeDoLeft.ref} style={whatWeDoLeft.style}>
+            <div ref={whatWeDoLeftRef} style={whatWeDoLeftStyle}>
               <SectionLabel color="#E8456A">✦ What We Do</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-normal text-black leading-snug">
                 Most email programmes fail before the first send.
               </h2>
             </div>
             <div
-              ref={whatWeDoRight.ref}
-              style={whatWeDoRight.style}
+              ref={whatWeDoRightRef}
+              style={whatWeDoRightStyle}
               className="space-y-5 pt-1"
             >
               <p className="text-gray-500 text-sm leading-relaxed">
-                The failure usually isn't the copy or the design — it's the
-                infrastructure. A list that's never been cleaned. Segments that don't
+                The failure usually isn&apos;t the copy or the design — it&apos;s the
+                infrastructure. A list that&apos;s never been cleaned. Segments that don&apos;t
                 reflect how customers actually behave. Automations built on guesswork
-                rather than real lifecycle data. A sender reputation that's been
+                rather than real lifecycle data. A sender reputation that&apos;s been
                 quietly degrading for months.
               </p>
               <p className="text-gray-500 text-sm leading-relaxed">
                 We start every engagement with a full audit — deliverability, list
                 health, automation logic, campaign performance — before we write a
-                single word of copy. Because the best email in the world doesn't
+                single word of copy. Because the best email in the world doesn&apos;t
                 matter if it lands in spam.
               </p>
               <p className="text-gray-500 text-sm leading-relaxed">
@@ -553,7 +554,7 @@ const EmailMarketingPage = () => {
       <section id="services" className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            <div ref={servicesLeft.ref} style={servicesLeft.style} className="lg:sticky lg:top-28">
+            <div ref={servicesLeftRef} style={servicesLeftStyle} className="lg:sticky lg:top-28">
               <SectionLabel color="#7B5EA7">✦ What We Build</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
                 Every stage of<br />the lifecycle,<br />
@@ -588,8 +589,8 @@ const EmailMarketingPage = () => {
         <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
             <div
-              ref={deliverablesLeft.ref}
-              style={deliverablesLeft.style}
+              ref={deliverablesLeftRef}
+              style={deliverablesLeftStyle}
               className="lg:sticky lg:top-28"
             >
               <SectionLabel color="#E8456A">✦ What You Get</SectionLabel>
@@ -615,14 +616,14 @@ const EmailMarketingPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            <div ref={proofLeft.ref} style={proofLeft.style} className="lg:sticky lg:top-28">
+            <div ref={proofLeftRef} style={proofLeftStyle} className="lg:sticky lg:top-28">
               <SectionLabel color="#F4A432">✦ Proof</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
                 Results from<br />real inboxes,<br />
                 <em>real people.</em>
               </h2>
               <p className="text-gray-500 text-sm leading-relaxed mt-4">
-                Numbers from clients we've worked with for over 6 months. Available
+                Numbers from clients we&apos;ve worked with for over 6 months. Available
                 to discuss on a call — no anonymised aggregates.
               </p>
             </div>
@@ -651,10 +652,10 @@ const EmailMarketingPage = () => {
                   ))}
                 </div>
                 <p className="font-serif text-base text-black leading-relaxed mb-5">
-                  "I thought our email list was a liability — low engagement, high
-                  unsubscribes, barely any revenue. Six months later it's our
-                  second-highest revenue channel. The list didn't change. The
-                  strategy did."
+                  &quot;I thought our email list was a liability — low engagement, high
+                  unsubscribes, barely any revenue. Six months later it&apos;s our
+                  second-highest revenue channel. The list didn&apos;t change. The
+                  strategy did.&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div
@@ -678,10 +679,10 @@ const EmailMarketingPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            <div ref={whoLeft.ref} style={whoLeft.style} className="lg:sticky lg:top-28">
-              <SectionLabel color="#E8456A">✦ Who It's For</SectionLabel>
+            <div ref={whoLeftRef} style={whoLeftStyle} className="lg:sticky lg:top-28">
+              <SectionLabel color="#E8456A">✦ Who It&apos;s For</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
-                For anyone with a list they're not making the most of.
+                For anyone with a list they&apos;re not making the most of.
               </h2>
             </div>
 
@@ -689,8 +690,8 @@ const EmailMarketingPage = () => {
               {whoItems.map((item, i) => (
                 <div
                   key={item.label}
-                  ref={whoReveals[i].ref}
-                  style={whoReveals[i].style}
+                  ref={whoRevealRefs[i]}
+                  style={whoRevealStyles[i]}
                   className="bg-white rounded-2xl p-6 border border-black/[0.06] flex gap-5 items-start"
                 >
                   <span
@@ -713,7 +714,7 @@ const EmailMarketingPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            <div ref={faqLeft.ref} style={faqLeft.style} className="lg:sticky lg:top-28">
+            <div ref={faqLeftRef} style={faqLeftStyle} className="lg:sticky lg:top-28">
               <SectionLabel color="#E8456A">✦ FAQ</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
                 Questions<br />we always<br />get asked.
@@ -745,19 +746,19 @@ const EmailMarketingPage = () => {
 
         <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
-            <div ref={ctaLeft.ref} style={ctaLeft.style}>
+            <div ref={ctaLeftRef} style={ctaLeftStyle}>
               <p className="text-[#E8456A] text-[11px] font-semibold tracking-widest uppercase mb-5">
                 ✦ Ready to Turn Your List Into Revenue
               </p>
               <h2 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-normal italic text-white mb-6 leading-tight">
                 Your list is an asset.<br />
-                Let's start treating<br />
+                Let&apos;s start treating<br />
                 it like one.
               </h2>
               <p className="text-white/50 text-sm leading-relaxed mb-10">
-                We'll audit
+                We&apos;ll audit
                 your current setup for free before you commit — so you know exactly
-                what you're getting and what it's likely to produce.
+                what you&apos;re getting and what it&apos;s likely to produce.
               </p>
               <div className="flex flex-wrap gap-4 items-center">
                 <MagneticCTA href="/contact" dark>
@@ -774,8 +775,8 @@ const EmailMarketingPage = () => {
 
             {/* Tier cards */}
             <div
-              ref={ctaRight.ref}
-              style={ctaRight.style}
+              ref={ctaRightRef}
+              style={ctaRightStyle}
               className="bg-white/8 border border-white/10 rounded-3xl p-8 space-y-4"
             >
               <p className="text-[10px] font-semibold tracking-widest uppercase text-white/40 mb-6">

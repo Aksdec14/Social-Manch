@@ -68,9 +68,9 @@ const useReveal = (delay = 0) => {
 
 const FAQItem = ({ faq, index }: { faq: FAQ; index: number }) => {
   const [open, setOpen] = useState(false);
-  const reveal = useReveal(index * 80);
+  const { ref, style } = useReveal(index * 80);
   return (
-    <div ref={reveal.ref} style={reveal.style} className="border-b border-black/10 last:border-b-0">
+    <div ref={ref} style={style} className="border-b border-black/10 last:border-b-0">
       <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between py-5 text-left gap-4 group">
         <span className="font-serif text-base sm:text-lg font-normal text-black leading-snug group-hover:text-gray-600 transition-colors duration-200">{faq.question}</span>
         <span className="flex-shrink-0 w-7 h-7 rounded-full border border-black/15 flex items-center justify-center text-sm transition-all duration-300" style={{ transform: open ? "rotate(45deg)" : "rotate(0deg)", backgroundColor: open ? "#1a1a1a" : "transparent", color: open ? "white" : "#1a1a1a" }}>+</span>
@@ -83,16 +83,15 @@ const FAQItem = ({ faq, index }: { faq: FAQ; index: number }) => {
 };
 
 const StepCard = ({ step, index }: { step: Step; index: number }) => {
-  const reveal = useReveal(index * 100);
+  const { ref, style } = useReveal(index * 100);
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      ref={reveal.ref}
-
+      ref={ref}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="relative bg-white rounded-2xl p-6 border border-black/[0.06] transition-all duration-300 cursor-default overflow-hidden"
-      {...(hovered ? { style: { ...reveal.style, transform: "translateY(-4px)", boxShadow: `0 16px 40px ${step.color}20` } } : {})}
+      {...(hovered ? { style: { ...style, transform: "translateY(-4px)", boxShadow: `0 16px 40px ${step.color}20` } } : {})}
     >
       <div className="absolute top-0 left-0 w-1 h-full rounded-l-2xl transition-all duration-300" style={{ backgroundColor: step.color, opacity: hovered ? 1 : 0.4 }} />
       <span className="text-[11px] font-bold tracking-widest mb-3 block" style={{ color: step.color }}>{step.number}</span>
@@ -103,16 +102,15 @@ const StepCard = ({ step, index }: { step: Step; index: number }) => {
 };
 
 const DeliverableCard = ({ item, index }: { item: Deliverable; index: number }) => {
-  const reveal = useReveal(index * 80);
+  const { ref, style } = useReveal(index * 80);
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      ref={reveal.ref}
-
+      ref={ref}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="bg-white/10 rounded-2xl p-5 border border-white/10 transition-all duration-300"
-      {...(hovered ? { style: { ...reveal.style, backgroundColor: "rgba(255,255,255,0.15)", transform: "translateY(-3px)" } } : {})}
+      {...(hovered ? { style: { ...style, backgroundColor: "rgba(255,255,255,0.15)", transform: "translateY(-3px)" } } : {})}
     >
       <span className="text-2xl mb-3 block">{item.icon}</span>
       <h4 className="font-serif text-base font-normal text-white mb-2">{item.title}</h4>
@@ -143,6 +141,16 @@ const SectionLabel = ({ color, children }: { color: string; children: React.Reac
   <span className="text-[11px] font-semibold tracking-widest uppercase mb-4 block" style={{ color }}>{children}</span>
 );
 
+const WhoWeServeItem = ({ item, index }: { item: { label: string; color: string; description: string }; index: number }) => {
+  const { ref, style } = useReveal(index * 100);
+  return (
+    <div ref={ref} style={style} className="bg-white rounded-2xl p-6 border border-black/[0.06] flex gap-5 items-start">
+      <span className="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mt-0.5 flex-shrink-0" style={{ backgroundColor: item.color + "18", color: item.color }}>{item.label}</span>
+      <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
+    </div>
+  );
+};
+
 const BrandStrategyPage = () => {
   const [titleVisible, setTitleVisible] = useState(false);
   useEffect(() => { const t = setTimeout(() => setTitleVisible(true), 100); return () => clearTimeout(t); }, []);
@@ -154,14 +162,14 @@ const BrandStrategyPage = () => {
   });
 
   // Standalone reveal hooks for sections that previously used IIFEs
-  const whatWeDoLeft = useReveal(0);
-  const whatWeDoRight = useReveal(120);
-  const processLeft = useReveal(0);
-  const deliverablesLeft = useReveal(0);
-  const whoLeft = useReveal(0);
-  const faqLeft = useReveal(0);
-  const ctaLeft = useReveal(0);
-  const ctaRight = useReveal(150);
+  const { ref: whatWeDoLeft, style: whatWeDoLeftStyle } = useReveal(0);
+  const { ref: whatWeDoRight, style: whatWeDoRightStyle } = useReveal(120);
+  const { ref: processLeft, style: processLeftStyle } = useReveal(0);
+  const { ref: deliverablesLeft, style: deliverablesLeftStyle } = useReveal(0);
+  const { ref: whoLeft, style: whoLeftStyle } = useReveal(0);
+  const { ref: faqLeft, style: faqLeftStyle } = useReveal(0);
+  const { ref: ctaLeft, style: ctaLeftStyle } = useReveal(0);
+  const { ref: ctaRight, style: ctaRightStyle } = useReveal(150);
 
   return (
     <main className="bg-[#F5F0E8] min-h-screen pt-[72px] overflow-x-hidden">
@@ -182,7 +190,7 @@ const BrandStrategyPage = () => {
                 drives growth.
               </h1>
               <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-10" style={fadeIn(350)}>
-                Most brands don't have a strategy problem — they have a clarity problem. We help growth-focused businesses define exactly who they are, who they serve, and why they win — then build the systems to communicate it consistently at scale.
+                Most brands don&apos;t have a strategy problem &mdash; they have a clarity problem. We help growth-focused businesses define exactly who they are, who they serve, and why they win &mdash; then build the systems to communicate it consistently at scale.
               </p>
               <div className="flex flex-wrap items-center gap-4" style={fadeIn(480)}>
                 <MagneticCTA href="/contact">Start a Project →</MagneticCTA>
@@ -202,7 +210,7 @@ const BrandStrategyPage = () => {
               <div className="border-t border-black/8 pt-6">
                 <div className="flex gap-1 mb-3">{[...Array(5)].map((_, i) => <span key={i} style={{ color: "#F4A432", fontSize: "14px" }}>★</span>)}</div>
                 <p className="font-serif text-sm text-black leading-relaxed mb-4">
-                  "Social Manch gave us the clarity to say no to the wrong customers and yes to the right ones."
+                  &quot;Social Manch gave us the clarity to say no to the wrong customers and yes to the right ones.&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-[#7B5EA7]/20 flex items-center justify-center text-[#7B5EA7] font-semibold text-xs">AK</div>
@@ -221,16 +229,16 @@ const BrandStrategyPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
-            <div ref={whatWeDoLeft.ref} style={whatWeDoLeft.style}>
+            <div ref={whatWeDoLeft} style={whatWeDoLeftStyle}>
               <SectionLabel color="#7B5EA7">✦ What We Do</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-normal text-black leading-snug">
                 Clarity is the most underrated growth lever.
               </h2>
             </div>
-            <div ref={whatWeDoRight.ref} style={whatWeDoRight.style} className="space-y-5 pt-1">
-              <p className="text-gray-500 text-sm leading-relaxed">When your positioning is vague, your marketing spend is inefficient. Sales cycles get longer. Good-fit buyers take longer to convert — or don't convert at all. Brand strategy fixes that.</p>
-              <p className="text-gray-500 text-sm leading-relaxed">We work with founders, CMOs, and leadership teams to get ruthlessly clear on what the brand stands for — then build a framework that every team member, agency, and campaign can execute from.</p>
-              <p className="text-gray-500 text-sm leading-relaxed">The result is a company that sounds like itself everywhere: in ads, in sales conversations, in product copy, in hiring. That consistency is what builds trust — and trust is what builds revenue.</p>
+            <div ref={whatWeDoRight} style={whatWeDoRightStyle} className="space-y-5 pt-1">
+              <p className="text-gray-500 text-sm leading-relaxed">When your positioning is vague, your marketing spend is inefficient. Sales cycles get longer. Good-fit buyers take longer to convert &mdash; or don&apos;t convert at all. Brand strategy fixes that.</p>
+              <p className="text-gray-500 text-sm leading-relaxed">We work with founders, CMOs, and leadership teams to get ruthlessly clear on what the brand stands for &mdash; then build a framework that every team member, agency, and campaign can execute from.</p>
+              <p className="text-gray-500 text-sm leading-relaxed">The result is a company that sounds like itself everywhere: in ads, in sales conversations, in product copy, in hiring. That consistency is what builds trust &mdash; and trust is what builds revenue.</p>
             </div>
           </div>
         </Container>
@@ -240,7 +248,7 @@ const BrandStrategyPage = () => {
       <section id="process" className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            <div ref={processLeft.ref} style={processLeft.style} className="lg:sticky lg:top-28">
+            <div ref={processLeft} style={processLeftStyle} className="lg:sticky lg:top-28">
               <SectionLabel color="#2BB5A0">✦ Our Process</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
                 Four steps from fuzzy<br />to <em>formidable</em>.
@@ -260,7 +268,7 @@ const BrandStrategyPage = () => {
         <div className="absolute w-40 h-40 rounded-full bg-[#F4A432] opacity-10 bottom-0 left-10 pointer-events-none" style={{ animation: "floatB 11s ease-in-out infinite" }} />
         <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            <div ref={deliverablesLeft.ref} style={deliverablesLeft.style} className="lg:sticky lg:top-28">
+            <div ref={deliverablesLeft} style={deliverablesLeftStyle} className="lg:sticky lg:top-28">
               <SectionLabel color="#F4A432">✦ What You Get</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white leading-snug">
                 Everything you need to show up with confidence.
@@ -278,8 +286,8 @@ const BrandStrategyPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            <div ref={whoLeft.ref} style={whoLeft.style} className="lg:sticky lg:top-28">
-              <SectionLabel color="#E8456A">✦ Who It's For</SectionLabel>
+            <div ref={whoLeft} style={whoLeftStyle} className="lg:sticky lg:top-28">
+              <SectionLabel color="#E8456A">✦ Who It&apos;s For</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
                 Built for businesses at a turning point.
               </h2>
@@ -289,15 +297,9 @@ const BrandStrategyPage = () => {
                 { label: "Startups", color: "#7B5EA7", description: "You have a great product but struggle to articulate why anyone should care. We give you the language to land investors, attract customers, and hire A-players." },
                 { label: "Growth-Stage", color: "#2BB5A0", description: "You've grown fast but messaging has gotten messy. Different teams say different things. We bring it back to one clear story everyone can execute from." },
                 { label: "Enterprise", color: "#F4A432", description: "You're entering a new market or launching a new product line and need a positioning strategy that doesn't dilute what the parent brand already stands for." },
-              ].map((item, i) => {
-                const reveal = useReveal(i * 100);
-                return (
-                  <div key={item.label} ref={reveal.ref} style={reveal.style} className="bg-white rounded-2xl p-6 border border-black/[0.06] flex gap-5 items-start">
-                    <span className="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mt-0.5 flex-shrink-0" style={{ backgroundColor: item.color + "18", color: item.color }}>{item.label}</span>
-                    <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
-                  </div>
-                );
-              })}
+              ].map((item, i) => (
+                <WhoWeServeItem key={item.label} item={item} index={i} />
+              ))}
             </div>
           </div>
         </Container>
@@ -307,7 +309,7 @@ const BrandStrategyPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            <div ref={faqLeft.ref} style={faqLeft.style} className="lg:sticky lg:top-28">
+            <div ref={faqLeft} style={faqLeftStyle} className="lg:sticky lg:top-28">
               <SectionLabel color="#7B5EA7">✦ FAQ</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
                 Questions<br />we always<br />get asked.
@@ -328,13 +330,13 @@ const BrandStrategyPage = () => {
         <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             {/* Left */}
-            <div ref={ctaLeft.ref} style={ctaLeft.style}>
+            <div ref={ctaLeft} style={ctaLeftStyle}>
               <p className="text-[#F4A432] text-[11px] font-semibold tracking-widest uppercase mb-5">✦ Ready to Get Clear</p>
               <h2 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-5xl font-normal italic text-white mb-6 leading-tight">
-                Let's build a brand<br />worth remembering.
+                Let&apos;s build a brand<br />worth remembering.
               </h2>
               <p className="text-white/50 text-sm leading-relaxed mb-10">
-                Every engagement starts with strategy — clear positioning, sharper messaging, and a system your team can run with long after we're gone.
+                Every engagement starts with strategy &mdash; clear positioning, sharper messaging, and a system your team can run with long after we&apos;re gone.
               </p>
               <div className="flex flex-wrap gap-4 items-center">
                 <MagneticCTA href="/contact" dark>Start the Conversation →</MagneticCTA>
@@ -342,8 +344,8 @@ const BrandStrategyPage = () => {
               </div>
             </div>
             {/* Right — pricing card */}
-            <div ref={ctaRight.ref} style={ctaRight.style} className="bg-white/8 border border-white/10 rounded-3xl p-8">
-              <p className="text-[10px] font-semibold tracking-widest uppercase text-white/40 mb-6">What's included</p>
+            <div ref={ctaRight} style={ctaRightStyle} className="bg-white/8 border border-white/10 rounded-3xl p-8">
+              <p className="text-[10px] font-semibold tracking-widest uppercase text-white/40 mb-6">What&apos;s included</p>
               <ul className="space-y-4 mb-8">
                 {["Brand Positioning Statement", "Messaging Framework", "Tone of Voice Guide", "Audience Personas", "Competitive Landscape Map", "Brand Activation Playbook"].map((item) => (
                   <li key={item} className="flex items-center gap-3 text-sm text-white/70">
