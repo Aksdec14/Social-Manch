@@ -175,7 +175,7 @@ const Container = ({
   className?: string;
 }) => (
   <div
-    className={`w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 ${className}`}
+    className={`w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-16 xl:px-24 ${className}`}
   >
     {children}
   </div>
@@ -236,8 +236,8 @@ const MagneticCTA = ({
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       className={`inline-flex items-center gap-2 text-[11px] font-semibold tracking-widest uppercase px-6 py-3 rounded-full border transition-all duration-200 ${dark
-          ? "bg-white text-black border-white hover:bg-transparent hover:text-white"
-          : "bg-black text-white border-black hover:bg-transparent hover:text-black"
+        ? "bg-white text-black border-white hover:bg-transparent hover:text-white"
+        : "bg-black text-white border-black hover:bg-transparent hover:text-black"
         }`}
       style={{ transition: "transform 0.15s ease, background 0.2s, color 0.2s" }}
     >
@@ -463,7 +463,7 @@ const LeadGenerationPage = () => {
               </div>
 
               <h1
-                className="font-serif text-5xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl font-normal text-black leading-[1.0] mb-6"
+                className="font-serif text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-normal text-black leading-[1.0] mb-6"
                 style={fadeIn(200)}
               >
                 Leads your sales<br />
@@ -812,7 +812,7 @@ const LeadGenerationPage = () => {
                 team trusts.
               </h2>
               <p className="text-white/50 text-sm leading-relaxed mb-10">
-                Lead generation retainers start at ₹54,999/month. We scope every
+                We scope every
                 engagement individually — because the right system for a 5-person
                 SaaS team looks very different from the right system for an
                 enterprise sales floor.
@@ -830,50 +830,49 @@ const LeadGenerationPage = () => {
               </div>
             </div>
 
-            {/* Included card */}
+            {/* Tier cards */}
             <div
               ref={ctaRight.ref}
               style={ctaRight.style}
-              className="bg-white/8 border border-white/10 rounded-3xl p-8"
+              className="bg-white/8 border border-white/10 rounded-3xl p-8 space-y-4"
             >
               <p className="text-[10px] font-semibold tracking-widest uppercase text-white/40 mb-6">
-                What's included
+                Choose your plan
               </p>
-              <ul className="space-y-4 mb-8">
-                {[
-                  "ICP Definition & Target List",
-                  "Outbound Sequence (6–8 touchpoints)",
-                  "Lead Capture Infrastructure",
-                  "Lead Scoring Model",
-                  "CRM Build & Integration",
-                  "Weekly Lead Report",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-center gap-3 text-sm text-white/70"
+
+              {[
+                {
+                  name: "Starter",
+                  description: "Perfect for startups and small businesses looking to establish their online presence.",
+                  cta: "Get a Quote",
+                },
+                {
+                  name: "Growth",
+                  description: "Designed for growing brands that need consistent marketing and measurable results.",
+                  cta: "Schedule a Consultation",
+                },
+                {
+                  name: "Enterprise",
+                  description: "Fully customized solutions for organizations with complex business requirements.",
+                  cta: "Request a Proposal",
+                },
+              ].map((tier) => (
+                <div
+                  key={tier.name}
+                  className="flex items-start justify-between gap-4 border border-white/10 rounded-2xl p-5"
+                >
+                  <div className="flex-1 min-w-0">
+                    <p className="text-white text-sm font-semibold mb-1">{tier.name}</p>
+                    <p className="text-white/50 text-xs leading-relaxed">{tier.description}</p>
+                  </div>
+                  <a
+                    href="/contact"
+                    className="flex-shrink-0 text-[10px] font-semibold tracking-widest uppercase text-white border border-white/20 rounded-full px-4 py-2 hover:bg-white hover:text-[#1a1a1a] transition-all duration-200 whitespace-nowrap"
                   >
-                    <span
-                      className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[10px]"
-                      style={{ backgroundColor: "#7B5EA7", color: "white" }}
-                    >
-                      ✓
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="border-t border-white/10 pt-6 flex items-end justify-between">
-                <div>
-                  <p className="text-white/40 text-[10px] tracking-widest uppercase mb-1">
-                    Starting at
-                  </p>
-                  <p className="font-serif text-3xl text-white">
-                    ₹54,999
-                    <span className="text-white/40 text-base font-sans">/mo</span>
-                  </p>
+                    {tier.cta}
+                  </a>
                 </div>
-                <p className="text-white/30 text-xs">Excl. ad spend</p>
-              </div>
+              ))}
             </div>
           </div>
         </Container>
@@ -889,7 +888,7 @@ const LeadGenerationPage = () => {
           50% { transform: translateY(14px) scale(0.96); }
         }
       `}</style>
-    </main>
+    </main >
   );
 };
 

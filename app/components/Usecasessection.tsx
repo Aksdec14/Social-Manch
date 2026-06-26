@@ -581,6 +581,9 @@ export default function UseCasesSection() {
         }
 
         /* ── RESPONSIVE: very small (375px) ── */
+        @media (max-width: 480px) {
+          .uc-results { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 390px) {
           .uc-root  { padding: 40px 14px; }
           .uc-title { font-size: 25px; }

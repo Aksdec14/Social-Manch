@@ -157,8 +157,11 @@ export default function ConsultingSection() {
         /* ── Stats Grid ── */
         .cs-stats-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr;
           gap: 12px;
+        }
+        @media (min-width: 480px) {
+          .cs-stats-grid { grid-template-columns: 1fr 1fr; }
         }
 
         .cs-stat-card {

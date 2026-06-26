@@ -153,7 +153,7 @@ const Container = ({
   className?: string;
 }) => (
   <div
-    className={`w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 ${className}`}
+    className={`w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-16 xl:px-24 ${className}`}
   >
     {children}
   </div>
@@ -213,8 +213,8 @@ const MagneticCTA = ({
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       className={`inline-flex items-center gap-2 text-[11px] font-semibold tracking-widest uppercase px-6 py-3 rounded-full border transition-all duration-200 ${dark
-          ? "bg-white text-black border-white hover:bg-transparent hover:text-white"
-          : "bg-black text-white border-black hover:bg-transparent hover:text-black"
+        ? "bg-white text-black border-white hover:bg-transparent hover:text-white"
+        : "bg-black text-white border-black hover:bg-transparent hover:text-black"
         }`}
       style={{ transition: "transform 0.15s ease, background 0.2s, color 0.2s" }}
     >
@@ -432,7 +432,7 @@ const DigitalMarketingPage = () => {
               </div>
 
               <h1
-                className="font-serif text-5xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl font-normal text-black leading-[1.0] mb-6"
+                className="font-serif text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-normal text-black leading-[1.0] mb-6"
                 style={fadeIn(200)}
               >
                 Visibility that<br />
@@ -766,14 +766,14 @@ const DigitalMarketingPage = () => {
                 ✦ Ready to Grow
               </p>
               <h2 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-normal italic text-white mb-6 leading-tight">
-                Let's make your<br />
+                Let&apos;s make your<br />
                 marketing budget<br />
                 earn its keep.
               </h2>
               <p className="text-white/50 text-sm leading-relaxed mb-10">
-                Digital marketing retainers start at ₹49,999/month, excluding ad
-                spend. We'll tell you in the first call whether we think you'll see a
-                return — and if we don't think you will, we won't take the project.
+                Our digital marketing retainers are built around accountability.
+                We&apos;ll tell you in the first call whether we think you&apos;ll see a
+                return — and if we don&apos;t think you will, we won&apos;t take the project.
               </p>
               <div className="flex flex-wrap gap-4 items-center">
                 <MagneticCTA href="/contact" dark>
@@ -783,7 +783,7 @@ const DigitalMarketingPage = () => {
                   href="/pricing"
                   className="text-[11px] font-semibold tracking-widest uppercase text-white/50 hover:text-white transition-colors duration-200 border-b border-white/20 pb-0.5"
                 >
-                  View Pricing
+                  Get a Quote
                 </a>
               </div>
             </div>
@@ -795,7 +795,7 @@ const DigitalMarketingPage = () => {
               className="bg-white/8 border border-white/10 rounded-3xl p-8"
             >
               <p className="text-[10px] font-semibold tracking-widest uppercase text-white/40 mb-6">
-                What's included
+                What&apos;s included
               </p>
               <ul className="space-y-4 mb-8">
                 {[
@@ -804,7 +804,7 @@ const DigitalMarketingPage = () => {
                   "Content & Copy Production",
                   "Campaign Build & Setup",
                   "Social Calendar & Publishing",
-                  "Monthly Performance Report",
+                  "Ongoing Performance Reporting",
                 ].map((item) => (
                   <li
                     key={item}
@@ -823,11 +823,10 @@ const DigitalMarketingPage = () => {
               <div className="border-t border-white/10 pt-6 flex items-end justify-between">
                 <div>
                   <p className="text-white/40 text-[10px] tracking-widest uppercase mb-1">
-                    Starting at
+                    Engagement
                   </p>
                   <p className="font-serif text-3xl text-white">
-                    ₹49,999
-                    <span className="text-white/40 text-base font-sans">/mo</span>
+                    Tailored to You
                   </p>
                 </div>
                 <p className="text-white/30 text-xs">Excl. ad spend</p>
@@ -847,7 +846,7 @@ const DigitalMarketingPage = () => {
           50% { transform: translateY(14px) scale(0.96); }
         }
       `}</style>
-    </main>
+    </main >
   );
 };
 

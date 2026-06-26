@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 
 const CareersPage = () => {
@@ -17,7 +17,7 @@ const CareersPage = () => {
         </div>
 
         {/* Heading */}
-        <h1 className="font-serif text-5xl italic text-[#1A1A1A] leading-tight mb-5">
+        <h1 className="font-serif text-4xl md:text-5xl italic text-[#1A1A1A] leading-tight mb-5">
           <span className="not-italic">We're not</span> hiring
           <br />
           <span className="not-italic">just yet.</span>

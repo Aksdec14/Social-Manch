@@ -49,7 +49,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section className="bg-[#F2E6D3] text-black">
+    <section className="bg-[#F7F0E5] text-black">
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-24 lg:px-14 lg:py-28">
 
         {/* ── Header ── */}

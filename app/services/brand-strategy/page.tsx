@@ -40,7 +40,7 @@ const stats = [
 const dotColors = ["#5B4FCF", "#2BB5A0", "#F4A432", "#E8456A", "#5BBF5B"];
 
 const Container = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <div className={`w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 ${className}`}>{children}</div>
+  <div className={`w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-16 xl:px-24 ${className}`}>{children}</div>
 );
 
 const useReveal = (delay = 0) => {
@@ -153,6 +153,16 @@ const BrandStrategyPage = () => {
     transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`,
   });
 
+  // Standalone reveal hooks for sections that previously used IIFEs
+  const whatWeDoLeft = useReveal(0);
+  const whatWeDoRight = useReveal(120);
+  const processLeft = useReveal(0);
+  const deliverablesLeft = useReveal(0);
+  const whoLeft = useReveal(0);
+  const faqLeft = useReveal(0);
+  const ctaLeft = useReveal(0);
+  const ctaRight = useReveal(150);
+
   return (
     <main className="bg-[#F5F0E8] min-h-screen pt-[72px] overflow-x-hidden">
 
@@ -166,7 +176,7 @@ const BrandStrategyPage = () => {
                 <div className="flex gap-1.5">{dotColors.map((c, i) => <span key={i} className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: c }} />)}</div>
                 <span className="text-[11px] font-semibold tracking-widest uppercase text-gray-500">Our Services</span>
               </div>
-              <h1 className="font-serif text-5xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl font-normal text-black leading-[1.0] mb-6" style={fadeIn(200)}>
+              <h1 className="font-serif text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-normal text-black leading-[1.0] mb-6" style={fadeIn(200)}>
                 Brand Strategy<br />
                 <em className="not-italic" style={{ color: "#7B5EA7" }}>that actually</em><br />
                 drives growth.
@@ -211,25 +221,17 @@ const BrandStrategyPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
-            {(() => {
-              const r = useReveal(0); return (
-                <div ref={r.ref} style={r.style}>
-                  <SectionLabel color="#7B5EA7">✦ What We Do</SectionLabel>
-                  <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-normal text-black leading-snug">
-                    Clarity is the most underrated growth lever.
-                  </h2>
-                </div>
-              );
-            })()}
-            {(() => {
-              const r = useReveal(120); return (
-                <div ref={r.ref} style={r.style} className="space-y-5 pt-1">
-                  <p className="text-gray-500 text-sm leading-relaxed">When your positioning is vague, your marketing spend is inefficient. Sales cycles get longer. Good-fit buyers take longer to convert — or don't convert at all. Brand strategy fixes that.</p>
-                  <p className="text-gray-500 text-sm leading-relaxed">We work with founders, CMOs, and leadership teams to get ruthlessly clear on what the brand stands for — then build a framework that every team member, agency, and campaign can execute from.</p>
-                  <p className="text-gray-500 text-sm leading-relaxed">The result is a company that sounds like itself everywhere: in ads, in sales conversations, in product copy, in hiring. That consistency is what builds trust — and trust is what builds revenue.</p>
-                </div>
-              );
-            })()}
+            <div ref={whatWeDoLeft.ref} style={whatWeDoLeft.style}>
+              <SectionLabel color="#7B5EA7">✦ What We Do</SectionLabel>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-normal text-black leading-snug">
+                Clarity is the most underrated growth lever.
+              </h2>
+            </div>
+            <div ref={whatWeDoRight.ref} style={whatWeDoRight.style} className="space-y-5 pt-1">
+              <p className="text-gray-500 text-sm leading-relaxed">When your positioning is vague, your marketing spend is inefficient. Sales cycles get longer. Good-fit buyers take longer to convert — or don't convert at all. Brand strategy fixes that.</p>
+              <p className="text-gray-500 text-sm leading-relaxed">We work with founders, CMOs, and leadership teams to get ruthlessly clear on what the brand stands for — then build a framework that every team member, agency, and campaign can execute from.</p>
+              <p className="text-gray-500 text-sm leading-relaxed">The result is a company that sounds like itself everywhere: in ads, in sales conversations, in product copy, in hiring. That consistency is what builds trust — and trust is what builds revenue.</p>
+            </div>
           </div>
         </Container>
       </section>
@@ -238,17 +240,13 @@ const BrandStrategyPage = () => {
       <section id="process" className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            {(() => {
-              const r = useReveal(0); return (
-                <div ref={r.ref} style={r.style} className="lg:sticky lg:top-28">
-                  <SectionLabel color="#2BB5A0">✦ Our Process</SectionLabel>
-                  <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
-                    Four steps from fuzzy<br />to <em>formidable</em>.
-                  </h2>
-                  <p className="text-gray-500 text-sm leading-relaxed mt-4">A proven framework built for companies that need more than a logo refresh.</p>
-                </div>
-              );
-            })()}
+            <div ref={processLeft.ref} style={processLeft.style} className="lg:sticky lg:top-28">
+              <SectionLabel color="#2BB5A0">✦ Our Process</SectionLabel>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
+                Four steps from fuzzy<br />to <em>formidable</em>.
+              </h2>
+              <p className="text-gray-500 text-sm leading-relaxed mt-4">A proven framework built for companies that need more than a logo refresh.</p>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {steps.map((step, i) => <StepCard key={step.number} step={step} index={i} />)}
             </div>
@@ -262,17 +260,13 @@ const BrandStrategyPage = () => {
         <div className="absolute w-40 h-40 rounded-full bg-[#F4A432] opacity-10 bottom-0 left-10 pointer-events-none" style={{ animation: "floatB 11s ease-in-out infinite" }} />
         <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            {(() => {
-              const r = useReveal(0); return (
-                <div ref={r.ref} style={r.style} className="lg:sticky lg:top-28">
-                  <SectionLabel color="#F4A432">✦ What You Get</SectionLabel>
-                  <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white leading-snug">
-                    Everything you need to show up with confidence.
-                  </h2>
-                  <p className="text-white/40 text-sm leading-relaxed mt-4">Six battle-tested deliverables, ready to activate.</p>
-                </div>
-              );
-            })()}
+            <div ref={deliverablesLeft.ref} style={deliverablesLeft.style} className="lg:sticky lg:top-28">
+              <SectionLabel color="#F4A432">✦ What You Get</SectionLabel>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white leading-snug">
+                Everything you need to show up with confidence.
+              </h2>
+              <p className="text-white/40 text-sm leading-relaxed mt-4">Six battle-tested deliverables, ready to activate.</p>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {deliverables.map((item, i) => <DeliverableCard key={item.title} item={item} index={i} />)}
             </div>
@@ -284,16 +278,12 @@ const BrandStrategyPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            {(() => {
-              const r = useReveal(0); return (
-                <div ref={r.ref} style={r.style} className="lg:sticky lg:top-28">
-                  <SectionLabel color="#E8456A">✦ Who It's For</SectionLabel>
-                  <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
-                    Built for businesses at a turning point.
-                  </h2>
-                </div>
-              );
-            })()}
+            <div ref={whoLeft.ref} style={whoLeft.style} className="lg:sticky lg:top-28">
+              <SectionLabel color="#E8456A">✦ Who It's For</SectionLabel>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
+                Built for businesses at a turning point.
+              </h2>
+            </div>
             <div className="space-y-4">
               {[
                 { label: "Startups", color: "#7B5EA7", description: "You have a great product but struggle to articulate why anyone should care. We give you the language to land investors, attract customers, and hire A-players." },
@@ -317,16 +307,12 @@ const BrandStrategyPage = () => {
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            {(() => {
-              const r = useReveal(0); return (
-                <div ref={r.ref} style={r.style} className="lg:sticky lg:top-28">
-                  <SectionLabel color="#7B5EA7">✦ FAQ</SectionLabel>
-                  <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
-                    Questions<br />we always<br />get asked.
-                  </h2>
-                </div>
-              );
-            })()}
+            <div ref={faqLeft.ref} style={faqLeft.style} className="lg:sticky lg:top-28">
+              <SectionLabel color="#7B5EA7">✦ FAQ</SectionLabel>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
+                Questions<br />we always<br />get asked.
+              </h2>
+            </div>
             <div>
               {faqs.map((faq, i) => <FAQItem key={i} faq={faq} index={i} />)}
             </div>
@@ -342,46 +328,38 @@ const BrandStrategyPage = () => {
         <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             {/* Left */}
-            {(() => {
-              const r = useReveal(0); return (
-                <div ref={r.ref} style={r.style}>
-                  <p className="text-[#F4A432] text-[11px] font-semibold tracking-widest uppercase mb-5">✦ Ready to Get Clear</p>
-                  <h2 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-5xl font-normal italic text-white mb-6 leading-tight">
-                    Let's build a brand<br />worth remembering.
-                  </h2>
-                  <p className="text-white/50 text-sm leading-relaxed mb-10">
-                    Strategy engagement starts at ₹59,999. Most clients see clarity in week two and pipeline impact within 90 days of activation.
-                  </p>
-                  <div className="flex flex-wrap gap-4 items-center">
-                    <MagneticCTA href="/contact" dark>Start the Conversation →</MagneticCTA>
-                    <a href="/pricing" className="text-[11px] font-semibold tracking-widest uppercase text-white/50 hover:text-white transition-colors duration-200 border-b border-white/20 pb-0.5">View Pricing</a>
-                  </div>
-                </div>
-              );
-            })()}
+            <div ref={ctaLeft.ref} style={ctaLeft.style}>
+              <p className="text-[#F4A432] text-[11px] font-semibold tracking-widest uppercase mb-5">✦ Ready to Get Clear</p>
+              <h2 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-5xl font-normal italic text-white mb-6 leading-tight">
+                Let's build a brand<br />worth remembering.
+              </h2>
+              <p className="text-white/50 text-sm leading-relaxed mb-10">
+                Every engagement starts with strategy — clear positioning, sharper messaging, and a system your team can run with long after we're gone.
+              </p>
+              <div className="flex flex-wrap gap-4 items-center">
+                <MagneticCTA href="/contact" dark>Start the Conversation →</MagneticCTA>
+                <a href="/pricing" className="text-[11px] font-semibold tracking-widest uppercase text-white/50 hover:text-white transition-colors duration-200 border-b border-white/20 pb-0.5">Get a Quote</a>
+              </div>
+            </div>
             {/* Right — pricing card */}
-            {(() => {
-              const r = useReveal(150); return (
-                <div ref={r.ref} style={r.style} className="bg-white/8 border border-white/10 rounded-3xl p-8">
-                  <p className="text-[10px] font-semibold tracking-widest uppercase text-white/40 mb-6">What's included</p>
-                  <ul className="space-y-4 mb-8">
-                    {["Brand Positioning Statement", "Messaging Framework", "Tone of Voice Guide", "Audience Personas", "Competitive Landscape Map", "90-Day Activation Playbook"].map((item) => (
-                      <li key={item} className="flex items-center gap-3 text-sm text-white/70">
-                        <span className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[10px]" style={{ backgroundColor: "#2BB5A0", color: "white" }}>✓</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="border-t border-white/10 pt-6 flex items-end justify-between">
-                    <div>
-                      <p className="text-white/40 text-[10px] tracking-widest uppercase mb-1">Starting at</p>
-                      <p className="font-serif text-3xl text-white">₹59,999</p>
-                    </div>
-                    <p className="text-white/30 text-xs">4–6 week engagement</p>
-                  </div>
+            <div ref={ctaRight.ref} style={ctaRight.style} className="bg-white/8 border border-white/10 rounded-3xl p-8">
+              <p className="text-[10px] font-semibold tracking-widest uppercase text-white/40 mb-6">What's included</p>
+              <ul className="space-y-4 mb-8">
+                {["Brand Positioning Statement", "Messaging Framework", "Tone of Voice Guide", "Audience Personas", "Competitive Landscape Map", "Brand Activation Playbook"].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-sm text-white/70">
+                    <span className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[10px]" style={{ backgroundColor: "#2BB5A0", color: "white" }}>✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="border-t border-white/10 pt-6 flex items-end justify-between">
+                <div>
+                  <p className="text-white/40 text-[10px] tracking-widest uppercase mb-1">Engagement</p>
+                  <p className="font-serif text-3xl text-white">Tailored to You</p>
                 </div>
-              );
-            })()}
+                <p className="text-white/30 text-xs">Scoped to your goals</p>
+              </div>
+            </div>
           </div>
         </Container>
       </section>

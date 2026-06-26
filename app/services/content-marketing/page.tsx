@@ -40,7 +40,7 @@ const stats = [
 const dotColors = ["#5B4FCF", "#2BB5A0", "#F4A432", "#E8456A", "#5BBF5B"];
 
 const Container = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <div className={`w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 ${className}`}>{children}</div>
+  <div className={`w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-16 xl:px-24 ${className}`}>{children}</div>
 );
 
 const useReveal = (delay = 0) => {
@@ -165,7 +165,7 @@ const ContentMarketingPage = () => {
                 <div className="flex gap-1.5">{dotColors.map((c, i) => <span key={i} className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: c }} />)}</div>
                 <span className="text-[11px] font-semibold tracking-widest uppercase text-gray-500">Our Services</span>
               </div>
-              <h1 className="font-serif text-5xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl font-normal text-black leading-[1.0] mb-6" style={fadeIn(200)}>
+              <h1 className="font-serif text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-normal text-black leading-[1.0] mb-6" style={fadeIn(200)}>
                 Content that<br />
                 <em className="not-italic" style={{ color: "#2BB5A0" }}>ranks, resonates</em><br />
                 and converts.
@@ -349,11 +349,11 @@ const ContentMarketingPage = () => {
                     Let's build content<br />that works while<br />you sleep.
                   </h2>
                   <p className="text-white/50 text-sm leading-relaxed mb-10">
-                    Content marketing retainers start at ₹49,999/month. Most clients see measurable organic growth within 90 days and a fully compounding engine by month six.
+                    Our content retainers are built for compounding growth — steady publishing, sharper SEO, and an engine that keeps working long after launch.
                   </p>
                   <div className="flex flex-wrap gap-4 items-center">
                     <MagneticCTA href="/contact" dark>Start the Conversation →</MagneticCTA>
-                    <a href="/pricing" className="text-[11px] font-semibold tracking-widest uppercase text-white/50 hover:text-white transition-colors duration-200 border-b border-white/20 pb-0.5">View Pricing</a>
+                    <a href="/pricing" className="text-[11px] font-semibold tracking-widest uppercase text-white/50 hover:text-white transition-colors duration-200 border-b border-white/20 pb-0.5">Get a Quote</a>
                   </div>
                 </div>
               );
@@ -366,11 +366,11 @@ const ContentMarketingPage = () => {
                   <ul className="space-y-4 mb-8">
                     {[
                       "Content Strategy Document",
-                      "4–6 Long-Form Articles/Month",
+                      "Long-Form Article Production",
                       "SEO Keyword Map",
                       "Email Newsletter System",
                       "Social Content Calendar",
-                      "Monthly Performance Report",
+                      "Performance Reporting",
                     ].map((item) => (
                       <li key={item} className="flex items-center gap-3 text-sm text-white/70">
                         <span className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[10px]" style={{ backgroundColor: "#2BB5A0", color: "white" }}>✓</span>
@@ -380,8 +380,8 @@ const ContentMarketingPage = () => {
                   </ul>
                   <div className="border-t border-white/10 pt-6 flex items-end justify-between">
                     <div>
-                      <p className="text-white/40 text-[10px] tracking-widest uppercase mb-1">Starting at</p>
-                      <p className="font-serif text-3xl text-white">₹49,999<span className="text-white/40 text-base font-sans">/mo</span></p>
+                      <p className="text-white/40 text-[10px] tracking-widest uppercase mb-1">Engagement</p>
+                      <p className="font-serif text-3xl text-white">Tailored to You</p>
                     </div>
                     <p className="text-white/30 text-xs">Ongoing retainer</p>
                   </div>

@@ -411,8 +411,7 @@ function ServiceCard({ service }: { service: ServiceCategory }) {
                 padding: '28px 24px 26px',
                 display: 'flex',
                 flexDirection: 'column',
-                height: '360px',
-                overflow: 'hidden',
+                minHeight: '360px',
                 transition: 'box-shadow 0.2s, transform 0.2s',
             }}
             onMouseEnter={(e) => {

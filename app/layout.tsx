@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Serif, Caveat, DM_Sans, Playfair_Display, Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
 const instrumentSerif = Instrument_Serif({
   weight: ["400"],
@@ -112,7 +113,7 @@ export default function RootLayout({
       lang="en"
       className={`${instrumentSerif.variable} ${caveat.variable} ${dmSans.variable} ${playfairDisplay.variable} ${fraunces.variable} ${plusJakartaSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}
+      <body className="min-h-full flex flex-col"><Navbar />{children}
         <Footer />
       </body>
     </html>

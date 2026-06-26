@@ -1,10 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-
-const NAV_LINKS = ["Brands", "Pricing", "Use Cases", "Contact"];
-
 const GALLERY_IMAGES = [
     { src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80", alt: "Brand Marketing", height: "tall", service: "Brand Marketing" },
     { src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80", alt: "Content Marketing", height: "short", service: "Content Marketing" },
@@ -19,7 +14,6 @@ const GALLERY_IMAGES = [
 ];
 
 export default function Header() {
-    const [menuOpen, setMenuOpen] = useState(false);
     const scrollToContact = () => {
         const el = document.getElementById('contact');
         if (el) { el.scrollIntoView({ behavior: 'smooth' }); }
@@ -29,7 +23,6 @@ export default function Header() {
     return (
         <>
             <style>{`
-                /* ── Marquee ── */
                 @keyframes marquee {
                     from { transform: translateX(0); }
                     to   { transform: translateX(-50%); }
@@ -46,34 +39,6 @@ export default function Header() {
                     max-width: 100vw;
                     overflow-x: hidden;
                 }
-
-                /* ── 3-column navbar grid: logo | links | actions ── */
-                .nav-inner {
-                    display: grid;
-                    grid-template-columns: 1fr auto 1fr;
-                    align-items: center;
-                    width: 100%;
-                    position: relative;
-                }
-                .nav-logo-spacer { grid-column: 1; justify-self: start; }
-                .nav-center      { grid-column: 2; }
-                .nav-right       { grid-column: 3; justify-self: end; display: flex; align-items: center; gap: 8px; }
-
-                /* ── Logo floats above the flow ── */
-                .nav-logo-link {
-                    position: absolute;
-                    top: 50%;
-                    left: 0px;
-                    transform: translateY(-50%);
-                    z-index: 10;
-                    line-height: 0;
-                }
-                @media (min-width: 640px)  { .nav-logo-link { left: 16px; } }
-                @media (min-width: 1024px) { .nav-logo-link { left: 40px; } }
-
-                /* ── Hover states ── */
-                .contact-btn:hover { background: #4361e3 !important; transform: translateY(-1px); }
-                .mobile-link:hover { background: #f5f0e8; color: #5776FB; }
 
                 /* ── Gallery card sizes ── */
                 .gallery-item-tall  { width: 100px; height: 140px; }
@@ -107,108 +72,9 @@ export default function Header() {
             `}</style>
 
             <div
-                className="header-root sticky top-0 z-0 bg-[#f5f0e8]"
+                className="header-root bg-[#f5f0e8]"
                 style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
             >
-
-                {/* ══════════════════════════
-                    Navbar
-                ══════════════════════════ */}
-                <nav className="nav-inner px-4 sm:px-6 lg:px-10 py-4 sm:py-4.5 lg:py-4.5">
-
-                    {/* Logo — absolutely positioned, never affects nav height */}
-                    <a href="/" className="nav-logo-link">
-                        <Image
-                            src="/logo.png"
-                            alt="Social Manch"
-                            width={280}
-                            height={280}
-                            className="w-auto h-[32px] sm:h-[36px] lg:h-[40px] object-contain block"
-                            priority
-                        />
-                    </a>
-
-                    {/* Invisible spacer reserves the left column width so nav links stay centred */}
-                    <div className="nav-logo-spacer pointer-events-none select-none" aria-hidden="true">
-                        <span className="block w-[100px] sm:w-[130px] lg:w-[160px] h-px" />
-                    </div>
-
-                    {/* Desktop nav links — lg and up */}
-                    <ul className="nav-center hidden lg:flex items-center gap-5 xl:gap-8 list-none m-0 p-0">
-                        {NAV_LINKS.map((link) => (
-                            <li key={link}>
-                                <a
-                                    href={link === "Brands" ? "/brands" : link === "Pricing" ? "/pricing" : link === "Use Cases" ? "/usecases" : link === "Contact" ? "/contact" : "#"}
-                                    className="text-[15px] font-medium text-[#3a3a3a] no-underline hover:text-[#5776FB] transition-colors whitespace-nowrap"
-                                    style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
-                                >
-                                    {link}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-
-                    {/* Right side: Contact button + hamburger */}
-                    <div className="nav-right">
-                        {/* Contact button — sm and above */}
-                        <button
-                            onClick={scrollToContact}
-                            className="contact-btn hidden sm:flex items-center text-sm md:text-[15px] font-semibold text-white bg-[#5776FB] border-none cursor-pointer px-4 md:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 whitespace-nowrap"
-                            style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
-                        >
-                            Get Started
-                        </button>
-
-                        {/* Hamburger — below lg */}
-                        <button
-                            className="lg:hidden flex flex-col justify-center gap-[5px] w-9 h-9 bg-transparent border-none cursor-pointer p-1 rounded-lg hover:bg-black/5 transition-colors"
-                            onClick={() => setMenuOpen(!menuOpen)}
-                            aria-label="Toggle menu"
-                            aria-expanded={menuOpen}
-                        >
-                            <span
-                                className="block h-0.5 w-5 bg-[#1a1a1a] rounded origin-center transition-all duration-200"
-                                style={{ transform: menuOpen ? "rotate(45deg) translateY(7px)" : "none" }}
-                            />
-                            <span
-                                className="block h-0.5 w-4 bg-[#1a1a1a] rounded transition-all duration-200"
-                                style={{ opacity: menuOpen ? 0 : 1 }}
-                            />
-                            <span
-                                className="block h-0.5 w-5 bg-[#1a1a1a] rounded origin-center transition-all duration-200"
-                                style={{ transform: menuOpen ? "rotate(-45deg) translateY(-7px)" : "none" }}
-                            />
-                        </button>
-                    </div>
-                </nav>
-
-                {/* Mobile / tablet dropdown */}
-                {menuOpen && (
-                    <div
-                        className="lg:hidden flex flex-col gap-0.5 bg-white rounded-2xl mx-3 mb-2 px-2 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.10)]"
-                        style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
-                    >
-                        {NAV_LINKS.map((link) => (
-                            <a
-                                key={link}
-                                href={link === "Brands" ? "/brands" : link === "Pricing" ? "/pricing" : link === "Use Cases" ? "/usecases" : link === "Contact" ? "/contact" : "#"}
-                                onClick={() => setMenuOpen(false)}
-                                className="mobile-link text-sm sm:text-base font-medium text-[#1a1a1a] no-underline px-4 py-2.5 rounded-xl transition-colors"
-                            >
-                                {link}
-                            </a>
-                        ))}
-                        {/* Contact CTA — xs only (sm+ has the inline button) */}
-                        <div className="mt-3 px-2 sm:hidden">
-                            <button
-                                className="w-full text-[15px] font-semibold text-white bg-[#5776FB] border-none cursor-pointer py-2.5 rounded-xl hover:bg-[#4361e3] transition-colors"
-                                onClick={() => { setMenuOpen(false); scrollToContact(); }}
-                            >
-                                Contact
-                            </button>
-                        </div>
-                    </div>
-                )}
 
                 {/* ══════════════════════════
                     Hero

@@ -9,7 +9,7 @@ const TEAM_MEMBER = {
         "With more than 25 years of leadership experience across enterprise organisations and high-growth startups, my focus has been on strengthening operating models, institutionalising governance frameworks, and building digital capabilities that support long-term growth.",
         "I have collaborated closely with CXOs, founders, boards, and leadership teams to drive enterprise transformation and align strategic vision with operational execution.",
     ],
-    image: "./rana.png",
+    image: "/rana.png",
     tags: ["Enterprise Strategy", "Operating Models", "Digital Transformation", "Governance", "CXO Advisory", "Growth Leadership"],
     linkedin: "https://www.linkedin.com/company/social-manch/",
     twitter: "https://x.com/socialmanch",
