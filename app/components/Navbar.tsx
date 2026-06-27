@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const NAV_LINKS = ["Brands", "Services", "Pricing", "Use Cases", "Contact"];
+const NAV_LINKS = ["About Us", "Services", "Use Cases", "Pricing"];
 
 const SERVICES = [
     { label: "Brand Strategy", href: "/services/brand-strategy" },
@@ -134,7 +134,7 @@ export default function Navbar() {
                             return (
                                 <li key={link}>
                                     <a
-                                        href={link === "Brands" ? "/brands" : link === "Pricing" ? "/pricing" : link === "Use Cases" ? "/usecases" : link === "Contact" ? "/contact" : "#"}
+                                        href={link === "About Us" ? "/about-us" : link === "Use Cases" ? "/usecases" : link === "Pricing" ? "/pricing" : "#"}
                                         className="text-[15px] font-medium text-[#3a3a3a] no-underline hover:text-[#5776FB] transition-colors whitespace-nowrap"
                                         style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
                                     >
@@ -211,7 +211,7 @@ export default function Navbar() {
                             return (
                                 <a
                                     key={link}
-                                    href={link === "Brands" ? "/brands" : link === "Pricing" ? "/pricing" : link === "Use Cases" ? "/usecases" : link === "Contact" ? "/contact" : "#"}
+                                    href={link === "About Us" ? "/about-us" : link === "Use Cases" ? "/usecases" : link === "Pricing" ? "/pricing" : "#"}
                                     onClick={() => setMenuOpen(false)}
                                     className="mobile-link text-sm sm:text-base font-medium text-[#1a1a1a] no-underline px-4 py-2.5 rounded-xl transition-colors"
                                 >

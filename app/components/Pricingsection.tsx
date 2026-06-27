@@ -3,66 +3,70 @@
 import { useState } from 'react';
 import { Inter, Playfair_Display, Caveat } from 'next/font/google';
 
-// Brand type system pulled from the hero: an editorial serif for the
-// headline, a clean grotesque for everything else, and a script font
-// reserved for the hand-drawn-style annotation (the hero's signature device).
 const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
-const playfair = Playfair_Display({ subsets: ['latin'], weight: ['700'] });
+const playfair = Playfair_Display({ subsets: ['latin'], weight: ['800'] });
 const caveat = Caveat({ subsets: ['latin'], weight: ['600', '700'] });
 
 interface PricingTier {
     name: string;
+    tagline: string;
     description: string;
-    monthlyPrice: number;
-    yearlyPrice: number;
+    idealFor: string;
     featured?: boolean;
     features: string[];
+    cta: string;
 }
 
 const TIERS: PricingTier[] = [
     {
         name: 'Starter',
-        description: 'For brands just beginning their growth journey',
-        monthlyPrice: 24999,
-        yearlyPrice: 19999,
+        tagline: 'Get your brand off the ground',
+        description:
+            'For founders and early-stage teams who need a clear marketing foundation — messaging, content, and a lead-gen system that actually works.',
+        idealFor: 'Ideal for: Startups & early-stage founders',
         features: [
-            'Brand & social strategy',
-            'Content calendar (3 posts/week)',
+            'Brand positioning & messaging framework',
+            'Social content strategy (3 posts/week)',
             'Monthly performance report',
+            'Lead generation foundations',
             'Email support',
         ],
+        cta: 'Start the conversation',
     },
     {
         name: 'Growth',
-        description: 'For growth-focused businesses ready to scale',
-        monthlyPrice: 59999,
-        yearlyPrice: 47999,
+        tagline: 'Build a predictable pipeline',
+        description:
+            'For scaling businesses that need a full demand-generation engine — paid acquisition, multi-channel campaigns, and a dedicated strategist in your corner.',
+        idealFor: 'Ideal for: Mid-market & growth-stage companies',
         featured: true,
         features: [
             'Everything in Starter',
             'Paid ad campaign management',
-            'Demand generation campaigns',
+            'Demand generation & nurture flows',
             'Dedicated account strategist',
             'Bi-weekly strategy calls',
+            'Sales & marketing alignment',
         ],
+        cta: 'Let\'s grow together',
     },
     {
         name: 'Scale',
-        description: 'For organizations building a full-funnel growth engine',
-        monthlyPrice: 149999,
-        yearlyPrice: 119999,
+        tagline: 'Operate at enterprise pace',
+        description:
+            'For large organisations that need strategic marketing leadership, governance frameworks, and a team that moves at the speed of your ambition.',
+        idealFor: 'Ideal for: Enterprise & leadership teams',
         features: [
             'Everything in Growth',
-            'Multi-channel growth engine',
+            'CXO-level marketing advisory',
+            'Multi-market campaign operations',
             'Custom reporting dashboard',
-            'Priority support & SLA',
+            'Governance & playbook design',
             'Quarterly business reviews',
         ],
+        cta: 'Talk to our team',
     },
 ];
-
-const formatINR = (value: number) =>
-    new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(value);
 
 function CheckIcon() {
     return (
@@ -91,65 +95,71 @@ function SparkleIcon() {
 }
 
 export default function PricingSection() {
-    const [isYearly, setIsYearly] = useState(false);
+    const [activeTab, setActiveTab] = useState<'monthly' | 'project'>('monthly');
 
     return (
-        <section id='pricing' className={`${inter.className} bg-[#F5F1E8] px-4 py-20 sm:px-6 lg:px-8`}>
+        <section id="pricing" className={`${inter.className} bg-[#F5F1E8] px-4 py-20 sm:px-6 lg:px-8`}>
             <div className="mx-auto max-w-6xl">
-                {/* Eyebrow badge — same gold pill + sparkle treatment as the hero */}
+
+                {/* Eyebrow badge */}
                 <div className="flex justify-center">
                     <div className="inline-flex items-center gap-2 rounded-full border border-amber-300 bg-white px-4 py-2 text-amber-600 shadow-sm">
                         <SparkleIcon />
-                        <span className="text-xs font-medium">
-                            Pricing built for growth-focused brands
+                        <span className="text-sm font-medium">
+                            Transparent plans. No surprises.
                         </span>
                     </div>
                 </div>
 
-                {/* Heading — echoes the hero's "X-Led Y" serif headline pattern */}
+                {/* Heading */}
                 <h2
                     className={`${playfair.className} mt-8 text-center text-3xl leading-tight text-[#15182B] sm:text-5xl`}
                 >
-                    Pricing-Led <span className="text-[#5B5FEF]">Growth.</span>
+                    A plan for every{' '}
+                    <span className="text-[#5B5FEF]">stage.</span>
                 </h2>
                 <p className="mx-auto mt-5 max-w-xl text-center text-sm text-neutral-500">
-                    Transparent plans for every stage of your growth journey — no hidden
-                    fees, no long-term lock-in.
+                    Whether you&apos;re building from scratch or scaling across markets — we have
+                    an engagement model that fits. All plans are custom-scoped to your goals.
                 </p>
 
-                {/* Billing toggle, with a hand-drawn-style callout like the hero's "It's free" note */}
+                {/* Engagement toggle */}
                 <div className="mt-10 flex justify-center">
                     <div
                         role="tablist"
-                        aria-label="Billing cycle"
+                        aria-label="Engagement type"
                         className="relative inline-flex items-center rounded-full bg-[#15182B] p-1"
                     >
                         <button
                             type="button"
                             role="tab"
-                            aria-selected={!isYearly}
-                            onClick={() => setIsYearly(false)}
-                            className={`rounded-full px-5 py-2 text-xs font-medium transition-colors ${!isYearly ? 'bg-white text-[#15182B]' : 'text-neutral-400 hover:text-neutral-200'
+                            aria-selected={activeTab === 'monthly'}
+                            onClick={() => setActiveTab('monthly')}
+                            className={`rounded-full px-5 py-2 text-xs font-medium transition-colors ${activeTab === 'monthly'
+                                ? 'bg-white text-[#15182B]'
+                                : 'text-neutral-400 hover:text-neutral-200'
                                 }`}
                         >
-                            Monthly
+                            Retainer
                         </button>
                         <button
                             type="button"
                             role="tab"
-                            aria-selected={isYearly}
-                            onClick={() => setIsYearly(true)}
-                            className={`rounded-full px-5 py-2 text-xs font-medium transition-colors ${isYearly ? 'bg-white text-[#15182B]' : 'text-neutral-400 hover:text-neutral-200'
+                            aria-selected={activeTab === 'project'}
+                            onClick={() => setActiveTab('project')}
+                            className={`rounded-full px-5 py-2 text-xs font-medium transition-colors ${activeTab === 'project'
+                                ? 'bg-white text-[#15182B]'
+                                : 'text-neutral-400 hover:text-neutral-200'
                                 }`}
                         >
-                            Yearly
+                            Project-Based
                         </button>
 
                         <div
-                            className={`${caveat.className} pointer-events-none absolute -right-16 -top-11 hidden -rotate-2 text-lg text-teal-600 sm:block`}
+                            className={`${caveat.className} pointer-events-none absolute -right-20 -top-11 hidden -rotate-2 text-lg text-teal-600 sm:block`}
                             aria-hidden="true"
                         >
-                            Save 20%!
+                            Most popular!
                             <svg
                                 viewBox="0 0 60 40"
                                 className="h-8 w-14 translate-x-3 -translate-y-0.5"
@@ -165,74 +175,107 @@ export default function PricingSection() {
                     </div>
                 </div>
 
-                {/* Pricing cards */}
-                <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3">
-                    {TIERS.map((tier) => {
-                        const price = isYearly ? tier.yearlyPrice : tier.monthlyPrice;
+                {/* Engagement context note */}
+                <p className="mt-4 text-center text-xs text-neutral-400">
+                    {activeTab === 'monthly'
+                        ? 'Ongoing retainer — a dedicated team embedded in your growth, month after month.'
+                        : 'Fixed-scope engagements — perfect for audits, launches, and one-time campaigns.'}
+                </p>
 
-                        return (
-                            <div
-                                key={tier.name}
-                                className={`flex flex-col rounded-3xl bg-white p-8 ${tier.featured
-                                    ? 'shadow-xl ring-2 ring-[#5B5FEF]'
-                                    : 'border border-neutral-200'
+                {/* Pricing cards */}
+                <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
+                    {TIERS.map((tier) => (
+                        <div
+                            key={tier.name}
+                            className={`flex flex-col rounded-3xl bg-white p-8 ${tier.featured
+                                ? 'shadow-xl ring-2 ring-[#5B5FEF]'
+                                : 'border border-neutral-200'
+                                }`}
+                        >
+                            {/* Tier header */}
+                            <div className="flex items-center justify-between gap-2">
+                                <h3 className="text-base font-semibold text-[#15182B]">{tier.name}</h3>
+                                {tier.featured && (
+                                    <span className="rounded-full bg-[#ECEBFF] px-3 py-1 text-[10px] font-semibold text-[#5B5FEF]">
+                                        Most Popular
+                                    </span>
+                                )}
+                            </div>
+
+                            <p className="mt-1 text-xs font-medium text-[#5B5FEF]">{tier.tagline}</p>
+
+                            <p className="mt-4 text-xs leading-relaxed text-neutral-500">
+                                {tier.description}
+                            </p>
+
+                            <div className="my-5 h-px bg-neutral-100" />
+
+                            <p className="text-[11px] font-medium text-neutral-400 uppercase tracking-wide">
+                                {tier.idealFor}
+                            </p>
+
+                            <button
+                                type="button"
+                                onClick={() => (window.location.href = '/contact')}
+                                className={`mt-5 w-full rounded-full py-3 text-xs font-semibold transition-colors ${tier.featured
+                                    ? 'bg-[#5B5FEF] text-white hover:bg-[#4548D9]'
+                                    : 'bg-[#ECEBFF] text-[#5B5FEF] hover:bg-[#DEDCFF]'
                                     }`}
                             >
-                                <h3 className="text-base font-semibold text-[#15182B]">{tier.name}</h3>
-                                <p className="mt-1 text-xs text-neutral-500">{tier.description}</p>
+                                {tier.cta} →
+                            </button>
 
-                                <div className="mt-6 flex items-baseline gap-1">
-                                    <span className="text-3xl font-bold text-[#15182B]">
-                                        ₹{formatINR(price)}
-                                    </span>
-                                    <span className="text-xs text-neutral-400">/month</span>
-                                </div>
-                                <p className="mt-1 h-4 text-xs text-neutral-400">
-                                    {isYearly ? 'Billed annually' : '\u00A0'}
-                                </p>
+                            <ul className="mt-7 space-y-4">
+                                {tier.features.map((feature) => (
+                                    <li
+                                        key={feature}
+                                        className="flex items-center gap-3 text-xs text-neutral-600"
+                                    >
+                                        <CheckIcon />
+                                        {feature}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
 
-                                <button
-                                    type="button"
-onClick={() => window.location.href = '/contact'}
-      className={`mt-4 w-full rounded-full py-3 text-xs font-semibold transition-colors ${tier.featured
-                                        ? 'bg-[#5B5FEF] text-white hover:bg-[#4548D9]'
-                                        : 'bg-[#ECEBFF] text-[#5B5FEF] hover:bg-[#DEDCFF]'
-                                        }`}
-                                >
-                                    Get Started
-                                </button>
-
-                                <ul className="mt-8 space-y-4">
-                                    {tier.features.map((feature) => (
-                                        <li
-                                            key={feature}
-                                            className="flex items-center gap-3 text-xs text-neutral-600"
-                                        >
-                                            <CheckIcon />
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        );
-                    })}
+                {/* Trust strip */}
+                <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                    {[
+                        { icon: '🔒', text: 'No lock-in contracts — cancel anytime' },
+                        { icon: '📞', text: 'Onboarding begins within 2 weeks' },
+                        { icon: '📊', text: 'ROI-focused reporting from day one' },
+                    ].map((item) => (
+                        <div
+                            key={item.text}
+                            className="flex items-center gap-3 rounded-2xl border border-neutral-200 bg-white px-5 py-4"
+                        >
+                            <span className="text-lg">{item.icon}</span>
+                            <span className="text-xs text-neutral-500">{item.text}</span>
+                        </div>
+                    ))}
                 </div>
 
                 {/* Contact banner */}
                 <div className="mt-6 flex flex-col items-start justify-between gap-6 rounded-3xl bg-[#15182B] p-8 sm:flex-row sm:items-center">
-                    <p className="text-base text-white">
-                        Need a plan built around your growth goals?
-                        <br className="hidden sm:block" /> Let&apos;s build your custom{' '}
-                        <span className="text-[#8B8EFF]">growth engine.</span>
-                    </p>
+                    <div>
+                        <p className="text-base font-semibold text-white">
+                            Need something tailored to your goals?
+                        </p>
+                        <p className="mt-1 text-sm text-neutral-400">
+                            We&apos;ll scope a custom engagement around your stage, team size, and growth targets.
+                        </p>
+                    </div>
                     <button
                         type="button"
-onClick={() => window.location.href = '/contact'}
-        className="whitespace-nowrap rounded-full bg-[#5B5FEF] px-6 py-3 text-xs font-semibold text-white transition-colors hover:bg-[#4548D9]"
+                        onClick={() => (window.location.href = '/contact')}
+                        className="whitespace-nowrap rounded-full bg-[#5B5FEF] px-6 py-3 text-xs font-semibold text-white transition-colors hover:bg-[#4548D9]"
                     >
-                        Contact Us
+                        Let&apos;s build your plan →
                     </button>
                 </div>
+
             </div>
         </section>
     );
