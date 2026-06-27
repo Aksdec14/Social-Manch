@@ -1,3 +1,12 @@
 @import "tailwindcss";
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
+
+
+section,
+main>div {
+  content-visibility: auto;
+  contain-intrinsic-size: 500px;
+}

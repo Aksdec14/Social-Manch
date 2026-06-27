@@ -80,7 +80,6 @@ export default function Navbar() {
 
             <div
                 className="sticky top-0 z-50 bg-[#f5f0e8]"
-                style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
             >
                 <nav className="nav-inner px-4 sm:px-6 lg:px-10 py-4 sm:py-4.5 lg:py-4.5">
                     <Link href="/" className="nav-logo-link">
@@ -103,7 +102,6 @@ export default function Navbar() {
                                     <li key={link} className="services-trigger relative">
                                         <button
                                             className="text-[15px] font-medium text-[#3a3a3a] no-underline hover:text-[#5776FB] transition-colors whitespace-nowrap bg-transparent border-none cursor-pointer flex items-center gap-1"
-                                            style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
                                             onMouseEnter={() => setServicesOpen(true)}
                                             onMouseLeave={() => setServicesOpen(false)}
                                         >
@@ -122,7 +120,6 @@ export default function Navbar() {
                                                     key={s.href}
                                                     href={s.href}
                                                     className="block text-sm font-medium text-[#3a3a3a] no-underline px-4 py-2.5 rounded-xl transition-colors"
-                                                    style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
                                                 >
                                                     {s.label}
                                                 </a>
@@ -136,7 +133,6 @@ export default function Navbar() {
                                     <a
                                         href={link === "About Us" ? "/about-us" : link === "Use Cases" ? "/usecases" : link === "Pricing" ? "/pricing" : "#"}
                                         className="text-[15px] font-medium text-[#3a3a3a] no-underline hover:text-[#5776FB] transition-colors whitespace-nowrap"
-                                        style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
                                     >
                                         {link}
                                     </a>
@@ -148,7 +144,6 @@ export default function Navbar() {
                         <button
                             onClick={scrollToContact}
                             className="contact-btn hidden sm:flex items-center text-sm md:text-[15px] font-semibold text-white bg-[#5776FB] border-none cursor-pointer px-4 md:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 whitespace-nowrap"
-                            style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
                         >
                             Get Started
                         </button>
@@ -176,7 +171,6 @@ export default function Navbar() {
                 {menuOpen && (
                     <div
                         className="lg:hidden flex flex-col gap-0.5 bg-white rounded-2xl mx-3 mb-2 px-2 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.10)]"
-                        style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
                     >
                         {NAV_LINKS.map((link) => {
                             if (link === "Services") {

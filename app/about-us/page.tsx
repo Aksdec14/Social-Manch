@@ -420,7 +420,7 @@ const AboutPage = () => {
 
           <div className="mt-10 grid items-start gap-10 rounded-[2rem] border border-[#1A1A24]/10 bg-white/50 p-8 md:grid-cols-[280px_1fr] md:p-12">
             <div>
-              <div className="h-80 w-56 max-w-full overflow-hidden">
+              <div className="h-85 w-56 max-w-full overflow-hidden">
                 <img
                   src="https://social-manch.vercel.app/rana.png"
                   alt="Rana Rajvinder Singh"

@@ -142,7 +142,6 @@ function ServiceCard({ service, onClick }: ServiceCardProps) {
             <div>
                 <div
                     style={{
-                        fontFamily: "var(--font-dm-sans)",
                         fontWeight: 600,
                         fontSize: 14,
                         color: "#1a1a1a",
@@ -153,7 +152,6 @@ function ServiceCard({ service, onClick }: ServiceCardProps) {
                 </div>
                 <div
                     style={{
-                        fontFamily: "var(--font-dm-sans)",
                         fontWeight: 400,
                         fontSize: 12,
                         color: "#888",
@@ -351,7 +349,6 @@ function ServiceModal({ service, onClose }: ServiceModalProps) {
                 {/* Description */}
                 <p
                     style={{
-                        fontFamily: "var(--font-dm-sans)",
                         fontSize: 15,
                         color: "#555",
                         lineHeight: 1.75,
@@ -364,7 +361,6 @@ function ServiceModal({ service, onClose }: ServiceModalProps) {
                 {/* CTA */}
                 <button
                     style={{
-                        fontFamily: "var(--font-dm-sans)",
                         fontWeight: 600,
                         fontSize: 14,
                         color: "#fff",
@@ -522,7 +518,6 @@ export default function MarketingSection() {
                 style={{
                     background: "#f5f0e8",
                     padding: "80px 48px",
-                    fontFamily: "var(--font-dm-sans)",
                     position: "relative",
                     zIndex: 1,
                     isolation: "isolate",
@@ -634,7 +629,6 @@ export default function MarketingSection() {
                     background: "#1a1a1a",
                     padding: "80px 48px",
                     textAlign: "center",
-                    fontFamily: "var(--font-dm-sans)",
                 }}
             >
                 {blobs.map((b, i) => (
@@ -696,7 +690,6 @@ export default function MarketingSection() {
 
                     <button
                         style={{
-                            fontFamily: "var(--font-dm-sans)",
                             fontWeight: 700,
                             fontSize: 15,
                             color: "#1a1a1a",

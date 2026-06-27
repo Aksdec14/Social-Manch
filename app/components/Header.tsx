@@ -73,7 +73,6 @@ export default function Header() {
 
             <div
                 className="header-root bg-[#f5f0e8]"
-                style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
             >
 
                 {/* ══════════════════════════
@@ -99,7 +98,6 @@ export default function Header() {
                         className="inline-flex items-center gap-1.5 bg-white border-[1.5px] border-[#FAD54B] text-[#d6aa1a] font-semibold rounded-full leading-snug mb-2 sm:mb-5
                                    px-3 sm:px-5 py-1 sm:py-1.5
                                    text-[10px] sm:text-[13.5px]"
-                        style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
                     >
                         <span className="shrink-0 text-[9px] sm:text-[10px]">✦</span>
                         <span className="hidden sm:inline">Get the Social Media Attention your brand deserves!</span>
@@ -125,7 +123,6 @@ export default function Header() {
                                    leading-[1.65] sm:leading-[1.75]
                                    text-left sm:text-center"
                         style={{
-                            fontFamily: "var(--font-dm-sans), sans-serif",
                             maxWidth: "min(860px, 92%)",
                         }}
                     >
@@ -174,7 +171,6 @@ export default function Header() {
                                 <div
                                     className="gallery-label absolute inset-x-0 bottom-0 text-white font-semibold tracking-[0.3px] leading-[1.3] rounded-b-2xl"
                                     style={{
-                                        fontFamily: "var(--font-dm-sans), sans-serif",
                                         background: "linear-gradient(to top, rgba(0,0,0,0.70), transparent)",
                                     }}
                                 >
@@ -212,7 +208,6 @@ export default function Header() {
                                    text-sm sm:text-base
                                    px-6 sm:px-8 lg:px-9
                                    py-2.5 sm:py-3.5 lg:py-4"
-                        style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
                     >
                         Get Started
                     </button>

@@ -1,8 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-
+  output: "export",
+  trailingSlash: true, // Apache on Plesk handles /about/ better than /about.html
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;

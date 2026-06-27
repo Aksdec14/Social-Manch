@@ -144,8 +144,6 @@ export default function MeetTheTeam() {
             <section
                 style={{
                     background: "#f5f0e8",
-                    fontFamily: "var(--font-dm-sans), sans-serif",
-                    /* Reduced vertical padding */
                     padding: "clamp(36px, 5vw, 64px) clamp(16px, 5vw, 80px)",
                     position: "relative",
                     zIndex: 1,
@@ -390,7 +388,6 @@ export default function MeetTheTeam() {
                                         onClick={() => window.location.href = '/contact'}
                                         className="team-cta-btn"
                                         style={{
-                                            fontFamily: "var(--font-dm-sans), sans-serif",
                                             fontWeight: 700,
                                             fontSize: "clamp(13px, 1.3vw, 14px)",
                                             color: "#fff",
@@ -408,7 +405,6 @@ export default function MeetTheTeam() {
                                         href="https://www.linkedin.com/company/social-manch/"
                                         className="team-social-btn team-view-profile-btn"
                                         style={{
-                                            fontFamily: "var(--font-dm-sans), sans-serif",
                                             fontWeight: 600,
                                             fontSize: "clamp(13px, 1.3vw, 14px)",
                                             color: "#3a3a3a",
