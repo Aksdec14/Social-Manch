@@ -727,42 +727,29 @@ const LeadGenerationPage = () => {
       </section>
 
       {/* ── WHO IT'S FOR ── */}
-      <section className="border-t border-black/10 py-16 sm:py-24">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
-            <div ref={whoLeftRef} style={whoLeftStyle} className="lg:sticky lg:top-28">
-              <SectionLabel color="#E8456A">✦ Who It&apos;s For</SectionLabel>
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">
-                For teams where pipeline is too important to leave to chance.
-              </h2>
-            </div>
-
-            <div className="space-y-4">
-              {whoItems.map((item, i) => (
-                <div
-                  key={item.label}
-                  ref={whoRevealRefs[i]}
-                  style={whoRevealStyles[i]}
-                  className="bg-white rounded-2xl p-6 border border-black/[0.06] flex gap-5 items-start"
-                >
-                  <span
-                    className="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mt-0.5 flex-shrink-0"
-                    style={{
-                      backgroundColor: item.color + "18",
-                      color: item.color,
-                    }}
-                  >
-                    {item.label}
-                  </span>
-                  <p className="text-gray-500 text-sm leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
-            </div>
+      <div className="space-y-4">
+        {whoItems.map((item, i) => (
+          <div
+            key={item.label}
+            ref={whoRevealRefs[i]}
+            style={whoRevealStyles[i]}
+            className="bg-white rounded-2xl p-5 sm:p-6 border border-black/[0.06] flex flex-col sm:flex-row gap-3 sm:gap-5 items-start"
+          >
+            <span
+              className="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full self-start sm:mt-0.5 flex-shrink-0"
+              style={{
+                backgroundColor: item.color + "18",
+                color: item.color,
+              }}
+            >
+              {item.label}
+            </span>
+            <p className="text-gray-500 text-sm leading-relaxed">
+              {item.description}
+            </p>
           </div>
-        </Container>
-      </section>
+        ))}
+      </div>
 
       {/* ── FAQ ── */}
       <section className="border-t border-black/10 py-16 sm:py-24">

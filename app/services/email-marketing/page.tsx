@@ -513,42 +513,26 @@ const EmailMarketingPage = () => {
       </section>
 
       {/* ── WHAT WE DO ── */}
-      <section className="border-t border-black/10 py-16 sm:py-24">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
-            <div ref={whatWeDoLeftRef} style={whatWeDoLeftStyle}>
-              <SectionLabel color="#E8456A">✦ What We Do</SectionLabel>
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-normal text-black leading-snug">
-                Most email programmes fail before the first send.
-              </h2>
-            </div>
-            <div
-              ref={whatWeDoRightRef}
-              style={whatWeDoRightStyle}
-              className="space-y-5 pt-1"
+      <div className="space-y-4">
+        {whoItems.map((item, i) => (
+          <div
+            key={item.label}
+            ref={whoRevealRefs[i]}
+            style={whoRevealStyles[i]}
+            className="bg-white rounded-2xl p-5 sm:p-6 border border-black/[0.06] flex flex-col sm:flex-row gap-3 sm:gap-5 items-start"
+          >
+            <span
+              className="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full self-start sm:mt-0.5 flex-shrink-0"
+              style={{ backgroundColor: item.color + "18", color: item.color }}
             >
-              <p className="text-gray-500 text-sm leading-relaxed">
-                The failure usually isn&apos;t the copy or the design — it&apos;s the
-                infrastructure. A list that&apos;s never been cleaned. Segments that don&apos;t
-                reflect how customers actually behave. Automations built on guesswork
-                rather than real lifecycle data. A sender reputation that&apos;s been
-                quietly degrading for months.
-              </p>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                We start every engagement with a full audit — deliverability, list
-                health, automation logic, campaign performance — before we write a
-                single word of copy. Because the best email in the world doesn&apos;t
-                matter if it lands in spam.
-              </p>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                Once the foundations are right, we build the campaigns, automations,
-                and sequences that turn your list from a cost line into a revenue
-                channel — and keep it that way.
-              </p>
-            </div>
+              {item.label}
+            </span>
+            <p className="text-gray-500 text-sm leading-relaxed">
+              {item.description}
+            </p>
           </div>
-        </Container>
-      </section>
+        ))}
+      </div>
 
       {/* ── SERVICES ── */}
       <section id="services" className="border-t border-black/10 py-16 sm:py-24">

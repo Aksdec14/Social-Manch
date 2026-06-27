@@ -144,8 +144,8 @@ const SectionLabel = ({ color, children }: { color: string; children: React.Reac
 const WhoWeServeItem = ({ item, index }: { item: { label: string; color: string; description: string }; index: number }) => {
   const { ref, style } = useReveal(index * 100);
   return (
-    <div ref={ref} style={style} className="bg-white rounded-2xl p-6 border border-black/[0.06] flex gap-5 items-start">
-      <span className="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mt-0.5 flex-shrink-0" style={{ backgroundColor: item.color + "18", color: item.color }}>{item.label}</span>
+    <div ref={ref} style={style} className="bg-white rounded-2xl p-5 sm:p-6 border border-black/[0.06] flex flex-col sm:flex-row gap-3 sm:gap-5 items-start">
+      <span className="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full self-start sm:mt-0.5 flex-shrink-0" style={{ backgroundColor: item.color + "18", color: item.color }}>{item.label}</span>
       <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
     </div>
   );
@@ -285,7 +285,7 @@ const BrandStrategyPage = () => {
       {/* ── WHO IT'S FOR: left = heading, right = 3 cards stacked ── */}
       <section className="border-t border-black/10 py-16 sm:py-24">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 sm:gap-10 lg:gap-20 items-start">
             <div ref={whoLeft} style={whoLeftStyle} className="lg:sticky lg:top-28">
               <SectionLabel color="#E8456A">✦ Who It&apos;s For</SectionLabel>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-snug">

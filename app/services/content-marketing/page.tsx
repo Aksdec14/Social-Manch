@@ -147,8 +147,8 @@ interface WhoItemData { label: string; color: string; description: string; }
 const WhoItem = ({ item, index }: { item: WhoItemData; index: number }) => {
   const { ref, style } = useReveal(index * 100);
   return (
-    <div ref={ref} style={style} className="bg-white rounded-2xl p-6 border border-black/[0.06] flex gap-5 items-start">
-      <span className="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mt-0.5 flex-shrink-0" style={{ backgroundColor: item.color + "18", color: item.color }}>{item.label}</span>
+    <div ref={ref} style={style} className="bg-white rounded-2xl p-5 sm:p-6 border border-black/[0.06] flex flex-col sm:flex-row gap-3 sm:gap-5 items-start">
+      <span className="inline-block text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full self-start sm:mt-0.5 flex-shrink-0" style={{ backgroundColor: item.color + "18", color: item.color }}>{item.label}</span>
       <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
     </div>
   );
@@ -348,29 +348,29 @@ const ContentMarketingPage = () => {
             {/* Right — pricing card */}
             <div ref={ctaRightRef} style={ctaRightStyle} className="bg-white/8 border border-white/10 rounded-3xl p-8">
               <p className="text-[10px] font-semibold tracking-widest uppercase text-white/40 mb-6">What&apos;s included</p>
-                  <ul className="space-y-4 mb-8">
-                    {[
-                      "Content Strategy Document",
-                      "Long-Form Article Production",
-                      "SEO Keyword Map",
-                      "Email Newsletter System",
-                      "Social Content Calendar",
-                      "Performance Reporting",
-                    ].map((item) => (
-                      <li key={item} className="flex items-center gap-3 text-sm text-white/70">
-                        <span className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[10px]" style={{ backgroundColor: "#2BB5A0", color: "white" }}>✓</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="border-t border-white/10 pt-6 flex items-end justify-between">
-                    <div>
-                      <p className="text-white/40 text-[10px] tracking-widest uppercase mb-1">Engagement</p>
-                      <p className="font-serif text-3xl text-white">Tailored to You</p>
-                    </div>
-                    <p className="text-white/30 text-xs">Ongoing retainer</p>
-                  </div>
+              <ul className="space-y-4 mb-8">
+                {[
+                  "Content Strategy Document",
+                  "Long-Form Article Production",
+                  "SEO Keyword Map",
+                  "Email Newsletter System",
+                  "Social Content Calendar",
+                  "Performance Reporting",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-sm text-white/70">
+                    <span className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[10px]" style={{ backgroundColor: "#2BB5A0", color: "white" }}>✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="border-t border-white/10 pt-6 flex items-end justify-between">
+                <div>
+                  <p className="text-white/40 text-[10px] tracking-widest uppercase mb-1">Engagement</p>
+                  <p className="font-serif text-3xl text-white">Tailored to You</p>
                 </div>
+                <p className="text-white/30 text-xs">Ongoing retainer</p>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
