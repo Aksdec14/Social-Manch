@@ -75,9 +75,9 @@ export default function ContactSection() {
             <div>
               <h3 className="mb-2 text-lg font-bold">Office Location</h3>
               <p className="text-sm leading-relaxed text-gray-500">
-                12273 Dream Avenue, London,
+                Noida,
                 <br />
-                123456 United Kingdom
+                India
               </p>
             </div>
 
@@ -93,9 +93,7 @@ export default function ContactSection() {
             <div>
               <h3 className="mb-2 text-lg font-bold">Support</h3>
               <p className="text-sm leading-relaxed text-gray-500">
-                hello@example.com
-                <br />
-                123 456 7899
+                aksdec14@gmail.com
               </p>
             </div>
           </div>

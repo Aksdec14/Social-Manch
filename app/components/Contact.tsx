@@ -296,17 +296,10 @@ export default function ContactSection() {
             </h1>
             <div className="info-blocks-wrapper">
               <div className="info-block">
-                <div className="info-icon">📞</div>
-                <div className="info-content">
-                  <span className="info-label">Call us</span>
-                  <span className="info-text">+1 (234) 999 888 7<br />+1 (987) 111 222 3</span>
-                </div>
-              </div>
-              <div className="info-block">
                 <div className="info-icon">📍</div>
                 <div className="info-content">
                   <span className="info-label">Find us</span>
-                  <span className="info-text">4140 Parker Rd. New York,<br />New York 31134</span>
+                  <span className="info-text">Noida, India</span>
                 </div>
               </div>
               <div className="info-block">
@@ -314,6 +307,13 @@ export default function ContactSection() {
                 <div className="info-content">
                   <span className="info-label">Visit us</span>
                   <span className="info-text">Monday – Friday<br />9AM – 5PM</span>
+                </div>
+              </div>
+              <div className="info-block">
+                <div className="info-icon">📧</div>
+                <div className="info-content">
+                  <span className="info-label">Email</span>
+                  <span className="info-text">aksdec14@gmail.com</span>
                 </div>
               </div>
             </div>
