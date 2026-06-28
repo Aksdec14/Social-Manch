@@ -1,31 +1,33 @@
-import { MetadataRoute } from 'next';
+import { MetadataRoute } from "next";
+
+export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://www.thesocialmanch.com';
+    const baseUrl = "https://www.thesocialmanch.com";
 
     return [
         {
             url: baseUrl,
             lastModified: new Date(),
-            changeFrequency: 'monthly',
+            changeFrequency: "monthly",
             priority: 1,
         },
         {
             url: `${baseUrl}/about`, // Add your other pages here
             lastModified: new Date(),
-            changeFrequency: 'monthly',
+            changeFrequency: "monthly",
             priority: 0.8,
         },
         {
             url: `${baseUrl}/services`,
             lastModified: new Date(),
-            changeFrequency: 'weekly',
+            changeFrequency: "weekly",
             priority: 0.8,
         },
         {
             url: `${baseUrl}/contact`,
             lastModified: new Date(),
-            changeFrequency: 'yearly',
+            changeFrequency: "yearly",
             priority: 0.5,
         },
     ];
