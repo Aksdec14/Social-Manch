@@ -76,6 +76,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <link rel="icon" type="image/png" href="/sm_logo01.png" />
       </head>
       <body className="min-h-full flex flex-col">
         <Navbar />
