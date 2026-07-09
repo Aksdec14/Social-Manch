@@ -9,15 +9,36 @@ export default function ContactSection() {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    if (isLoading) return;
+    setIsLoading(true);
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "555279c8-2f1d-4664-b474-08fed6dbff13",
+          ...formData,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setIsSubmitted(true);
+        setFormData({ name: "", email: "", company: "", budget: "", phone: "", website: "", projectType: "", timeline: "", message: "" });
+        setTimeout(() => setIsSubmitted(false), 5000);
+      }
+    } catch {
+      // silently fail
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -374,7 +395,7 @@ export default function ContactSection() {
                 </div>
               </div>
               <button className={`btn-send ${isSubmitted ? "success" : ""}`} onClick={handleSubmit}>
-                {isSubmitted ? "Message Sent!" : "Send Message"}
+                {isLoading ? "Sending..." : isSubmitted ? "Message Sent!" : "Send Message"}
                 <span className="arrow-icon">→</span>
               </button>
             </form>

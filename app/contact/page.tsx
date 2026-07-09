@@ -34,7 +34,7 @@ type FieldElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
 export default function ContactSection() {
   const [form, setForm] = useState<ContactFormState>(initialFormState);
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
 
   function handleChange(e: ChangeEvent<FieldElement>) {
     const { name, value } = e.target;
@@ -42,10 +42,29 @@ export default function ContactSection() {
     if (status === "sent") setStatus("idle");
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log("Contact form submitted:", form);
-    setStatus("sent");
+    if (status === "sending") return;
+    setStatus("sending");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "555279c8-2f1d-4664-b474-08fed6dbff13",
+          ...form,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus("sent");
+        setForm(initialFormState);
+      } else {
+        setStatus("idle");
+      }
+    } catch {
+      setStatus("idle");
+    }
   }
 
   return (
@@ -198,7 +217,7 @@ export default function ContactSection() {
                 type="submit"
                 className="group inline-flex items-center gap-3 rounded-full bg-black px-7 py-3.5 text-sm font-semibold text-[#F5F0E8] transition-colors duration-200 hover:bg-red-500"
               >
-                {status === "sent" ? "Message Sent ✓" : "Send Message"}
+                {status === "sending" ? "Sending..." : status === "sent" ? "Message Sent ✓" : "Send Message"}
                 <span className="transition-transform duration-200 group-hover:translate-x-1">
                   →
                 </span>
