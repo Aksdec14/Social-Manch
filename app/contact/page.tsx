@@ -147,7 +147,7 @@ export default function ContactSection() {
               autoComplete="organization"
             />
             <TextField
-              label="www.example.com"
+              label="www.example.com (Optional)"
               name="website"
               type="url"
               value={form.website}

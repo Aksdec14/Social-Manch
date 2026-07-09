@@ -365,8 +365,8 @@ export default function ContactSection() {
                 <input type="tel" name="phone" placeholder="+1 (000) 000-0000" value={formData.phone} onChange={handleChange} />
               </div>
               <div className="field">
-                <label>Website URL</label>
-                <input type="url" name="website" placeholder="www.company.com" value={formData.website} onChange={handleChange} />
+                <label>Website URL <span style={{ color: '#aaa', fontWeight: 400 }}>(Optional)</span></label>
+                <input type="url" name="website" placeholder="www.company.com (leave blank if none)" value={formData.website} onChange={handleChange} />
               </div>
               <div className="field">
                 <label>Project Type</label>
