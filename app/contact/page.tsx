@@ -93,7 +93,7 @@ export default function ContactSection() {
             <div>
               <h3 className="mb-2 text-lg font-bold">Support</h3>
               <p className="text-sm leading-relaxed text-gray-500">
-                aksdec14@gmail.com
+                reachout@thesocialmanch.com
               </p>
             </div>
           </div>

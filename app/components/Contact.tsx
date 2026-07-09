@@ -313,7 +313,7 @@ export default function ContactSection() {
                 <div className="info-icon">📧</div>
                 <div className="info-content">
                   <span className="info-label">Email</span>
-                  <span className="info-text">aksdec14@gmail.com</span>
+                  <span className="info-text">reachout@thesocialmanch.com</span>
                 </div>
               </div>
             </div>
